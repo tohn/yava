@@ -1,0 +1,89 @@
+<% provide(:title, t(:users_title, count: 1)+": "+@user.nickname) %>
+
+<h2><%= @user.nickname %></h2>
+
+<% if @user.permission_id == User::PERMISSIONS_DEACTIVATED %>
+  <h3 class="center"><%= t(:users_deleted) %></h3>
+<% end %>
+
+<%= avatar_for @user %>
+
+<b><%= @user.points %></b>
+
+<p><%= t(:users_loggedin_via) %> <%= @user.provider.fullname %></p>
+
+<p>
+<%= t("activerecord.attributes.user.created_at") %> <%= t(:submitted_when) %> <%= time_ago_in_words(@user.created_at) %><br>
+<%= t("activerecord.attributes.user.lastlogin") %> <%= t(:submitted_when) %> <%= time_ago_in_words(@user.lastlogin) %>
+</p>
+
+<hr>
+
+<p><b><%= t("products_title.other") %>:</b></p>
+
+<div class="center"><%= will_paginate @products.where("user_id = ?", @user.id) %></div>
+<p>
+<%# Product.select(:id, :name).where("user_id = ?", @user.id).order("LOWER(name) ASC").map do |p| %>
+<% @products.select(:id, :name).order("LOWER(name) ASC").map do |p| %>
+	<%= link_to p.name, product_path(p.id) %><br>
+<% end %>
+</p>
+<div class="center"><%= will_paginate @products %></div>
+<%#.where("user_id = ?", @user.id) %>
+
+<p>
+<%= link_to t("form.new", genus: t("form.n"), model: t("products_title.one")), new_product_path, { :class => "btn" } %>
+</p>
+
+<hr>
+
+<p><b><%= t("inquiries_title.other") %>:</b></p>
+<p>
+<% Inquiry.select(:id, :product_id).where("user_id = ? and typ = ?", @user.id, false).group("inquiries.id", "product_id").order("LOWER(name) ASC").find_each do |i| %>
+		<%= link_to i.product.name, product_path(i.product_id) %> - <%= link_to "Antwort hinzufügen", new_inquiry_path(product_id: i.product_id) %><br>
+<% end %>
+</p>
+
+<!--
+<hr>
+
+
+
+  <p><b><%#= t(:to_control) %> <%#= t("inquiries_title.other") %>:</b></p>
+    <%# Inquiry.select(:id, :product_id).where("user_id = ? and seen = ?", @user.id, false).order("LOWER(name) ASC").find_each do |i| %>
+      <%#= link_to i.product.name, edit_inquiry_path(i.id) %><br>
+    <%# end %>
+-->
+
+<hr>
+
+<% if current_user %>
+<% if current_user.id == @user.id or current_user.permission_id >= User::PERMISSIONS_ADMIN %>
+
+<p>
+<strong><%= t("activerecord.attributes.user.name") %>:</strong>
+  <%= @user.name %> <%= @user.anonymize_name ? t(:users_anon_true) : t(:users_anon_false) %>
+</p>
+
+<p>
+<strong><%= t("activerecord.attributes.user.email") %>:</strong>
+  <%= @user.email %> <%= @user.email_verified ? t(:users_email_true) : t(:users_email_false) %>
+</p>
+
+<p>
+<strong><%= t("activerecord.attributes.user.permission_id") %>:</strong>
+  <%= @user.permission_id %>
+</p>
+
+<% if current_user.permission_id >= User::PERMISSIONS_ADMIN or @user.permission_id != User::PERMISSIONS_DEACTIVATED %>
+  <hr>
+  <p><%= link_to t(:users_destroy), @user, role: "button", class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %></p>
+  <p><%= t(:users_destroy_hint) %></p>
+<% end %>
+<hr>
+
+<p>
+  <%= link_to t(:link_edit, model: t("users_title.one")), edit_user_path(@user) %> |
+<% end %>
+<% end %>
+<%= link_to t(:link_back, model: t("users_title.other")), users_path %>

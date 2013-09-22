@@ -1,0 +1,28 @@
+<% provide(:title, t(:search_title)) %>
+
+<h1><%= t :search_title %></h1>
+
+<div class="center">
+<!--		<p><%#= t :search_desc %></p>-->
+<p>Suche nach <abbr title="Global Trade Item Number"><a href="https://de.wikipedia.org/wiki/GTIN">GTIN</a></abbr>
+<a href="#" data-toggle="tooltip" data-html="true" title="<p><%= t(:search_tooltip) %></p><p><img alt='example barcode' width='258.5px' height='208.5px' src='//yava.yhaupenthal.org/images/barcode.png'></p>" data-placement="bottom" class="ttba">[?]</a> oder Produktname
+</p>
+
+
+<% if @search && @product.blank? %>
+  <p><%= t(:search_no_result) %><br>
+  <%= t(:search_new_product_1) %> <%= link_to t(:search_new_product_2), new_product_path(:gtin => @search) %>?</p>
+  <hr>
+  <p><%= link_to t(:search_new), search_path %></p>
+<% elsif @search && @product.any? %>
+  <p><%= t(:search_many_results) %></p>
+  <p><% @product.map do |p| %>
+    <%= link_to Product.find_by_id(p).name, product_path(p) %><br>
+  <% end %></p>
+  <hr>
+  <p><%= link_to t(:search_new), search_path %></p>
+<% else %>
+  <%= render :partial => "search" %>
+<% end %>
+
+</div>

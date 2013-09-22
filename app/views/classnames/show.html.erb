@@ -1,0 +1,17 @@
+<p>
+	<b><%= t("activerecord.attributes.classname.sg") %>:</b>
+	<%= @classname.sg %>
+</p>
+
+<p>
+	<b><%= t("activerecord.attributes.classname.pl") %>:</b>
+	<%= @classname.pl %>
+</p>
+
+
+<hr>
+
+<p>
+	<%= link_to t(:link_edit, model: t("classnames_title.one")), edit_classname_path(@classname) %> |
+	<%= link_to t(:link_back, model: t("classnames_title.other")), classnames_path %>
+</p>

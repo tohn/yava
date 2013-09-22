@@ -1,0 +1,14 @@
+//$("packagematerial-errors").html("<%#= escape_javascript(render :partial => "layouts/submit_error", :errors => @packagematerial.errors) %>");
+//$(".packagematerial-errors").remove();
+<% if @packagematerial.errors.any? %>
+  $(".packagematerial-errors").empty();
+  $('.packagematerial-errors').append('<div class="alert alert-error"><ul class="error-messages"></ul></div>');
+  <% @packagematerial.errors.full_messages.each do |msg| %>
+    $('.error-messages').append('<%= escape_javascript msg %><br>');
+  <% end %>
+<% else %>
+  $("<%= escape_javascript(render @packagematerial) %>").appendTo("select#product_packagematerial_id");
+  $("button.close").click();
+  $(".packagematerial-errors").empty();
+  $("input#packagematerial_name").val("");
+<% end %>

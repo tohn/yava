@@ -1,0 +1,71 @@
+<% if current_user %>
+
+<div id="nutval" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel"><%= t(:nutval_title) %></h3>
+  </div>
+<div class="modal-body">
+	<%= simple_form_for @nv, :html => { :class => 'form-horizontal' }, :remote => true do |f| %>
+	<div class="nutval-errors"></div>
+
+	<div class="well">
+		<%= t(:nutval_info) %>
+	</div>
+
+	<%= f.input :energy, wrapper: :append do %>
+		<%= f.input_field :energy %>
+		<%= content_tag :span, "kJ", :class => "add-on" %>
+	<% end %>
+	<%= f.input :proteins, wrapper: :append do %>
+		<%= f.input_field :proteins %>
+		<%= content_tag :span, "g", :class => "add-on" %>
+	<% end %>
+	<%= f.input :carbohydrates, wrapper: :append do %>
+		<%= f.input_field :carbohydrates %>
+		<%= content_tag :span, "g", :class => "add-on" %>
+	<% end %>
+	<%= f.input :sugar, wrapper: :append do %>
+		<%= f.input_field :sugar %>
+		<%= content_tag :span, "g", :class => "add-on" %>
+	<% end %>
+	<%= f.input :fat, wrapper: :append do %>
+		<%= f.input_field :fat %>
+		<%= content_tag :span, "g", :class => "add-on" %>
+	<% end %>
+	<%= f.input :saturated, wrapper: :append do %>
+		<%= f.input_field :saturated %>
+		<%= content_tag :span, "g", :class => "add-on" %>
+	<% end %>
+	<%= f.input :monounsaturated, wrapper: :append do %>
+		<%= f.input_field :monounsaturated %>
+		<%= content_tag :span, "g", :class => "add-on" %>
+	<% end %>
+	<%= f.input :polyunsaturated, wrapper: :append do %>
+		<%= f.input_field :polyunsaturated %>
+		<%= content_tag :span, "g", :class => "add-on" %>
+	<% end %>
+	<%= f.input :roughages, wrapper: :append do %>
+		<%= f.input_field :roughages %>
+		<%= content_tag :span, "g", :class => "add-on" %>
+	<% end %>
+	<%= f.input :natrium, wrapper: :append do %>
+		<%= f.input_field :natrium %>
+		<%= content_tag :span, "g", :class => "add-on" %>
+	<% end %>
+	<%= f.input :alcohol, wrapper: :append do %>
+		<%= f.input_field :alcohol %>
+		<%= content_tag :span, "% vol.", :class => "add-on" %>
+	<% end %>
+
+
+	<div class="modal-footer form-actions">
+		<%= f.button :submit, :class => 'btn-primary' %>
+		<%= submit_tag t(:form_cancel), :type => :reset, :class => "btn btn-danger", "data-dismiss" => "modal", "aria-hidden" => "true" %>
+	</div>
+<% end %>
+</div>
+</div>
+<% else %>
+	<%= no_rights %>
+<% end %>

@@ -1,0 +1,14 @@
+<% if @comment.errors.any? %>
+  $(".comment-errors").empty();
+  $('.comment-errors').append('<div class="alert alert-error"><ul class="error-messages"></ul></div>');
+  <% @comment.errors.full_messages.each do |msg| %>
+    $('.comment-errors .error-messages').append('<%= escape_javascript msg %><br>');
+  <% end %>
+<% else %>
+  $("<%= escape_javascript(render "products/comment", :comment => @comment) %>").appendTo("div.comments");
+  //$("div.veganity p:nth-of-type(4)").replaceWith("<p><%= @comment.veganity.name.capitalize + " " + t(:veganity_comments) %></p>")
+  //$("div.veganity p:nth-of-type(5)").replaceWith("<p><%= @comment.product.veganity.name.capitalize %></p>")
+  $("textarea#comment_comment").val("");
+  $("button.close").click();
+  $(".comment-errors").empty();
+<% end %>

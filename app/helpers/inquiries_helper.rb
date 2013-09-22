@@ -1,0 +1,3 @@
+# InquiriesHelper
+module InquiriesHelper
+end

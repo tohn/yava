@@ -1,0 +1,11 @@
+<% if @j_product_feature.errors.any? %>
+  $(".j_product_feature-errors").empty();
+  $('.j_product_feature-errors').append('<div class="alert alert-error"><ul class="error-messages"></ul></div>');
+  <% @j_product_feature.errors.full_messages.each do |msg| %>
+    $('.j_product_feature-errors .error-messages').append('<%= escape_javascript msg %><br>');
+  <% end %>
+<% else %>
+  $("<%= escape_javascript(render @j_product_feature) %>").appendTo("div.features");
+  $("select#j_product_feature_feature_id").val("selected");
+  $(".j_product_feature-errors").empty();
+<% end %>

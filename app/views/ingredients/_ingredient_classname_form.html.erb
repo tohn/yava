@@ -1,0 +1,37 @@
+<% if current_user %>
+
+<div id="ingredient_classname" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-focus-on="input:first">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel"><%= t("j_ingredient_classnames_title.other") %></h3>
+  </div>
+
+  <div class="modal-body">
+    <div class="ingredient_classnames">
+      <% @ingredient.classname.map do |c| %>
+	<p>
+	  <%#= link_to c.get_sg, ???ingredient_path() %>
+	  <%= c.get_sg %>
+	  <%= link_to "<i class='icon-minus'></i>".html_safe, j_ingredient_classname_path(c.id), :onclick => "$(this).parents('p').remove();", :remote => true, :method => :delete %>
+	</p>
+      <% end %>
+    </div>
+  
+  <% @ingredient_classname = JIngredientClassname.new %>
+	<%= simple_form_for @ingredient_classname, :html => { :class => 'form-horizontal' }, :remote => true do |f| %>
+	<div class="j_ingredient_classname-errors"></div>
+		  <%= f.hidden_field :ingredient_id, value: @ingredient.id %>
+		  <%= f.input :classname_id, collection: Classname.order("LOWER(sg) ASC"), label_method: :get_sg_w_abbr, hint: "<a role='button' class='btn' onclick=\"$(this).parents('form').submit();\">#{t(:form_add)}</a>" %>
+
+	<div class="form-actions">
+		<%#= f.button :submit, :class => 'btn-primary' %>
+		<%= submit_tag t(:form_cancel), :type => :reset, :class => "btn btn-danger", "data-dismiss" => "modal", "aria-hidden" => "true" %>
+	</div>
+<% end %>
+
+</div>
+</div>
+
+<% else %>
+	<%= no_rights %>
+<% end %>

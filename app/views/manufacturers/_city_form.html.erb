@@ -1,0 +1,25 @@
+<% if current_user %>
+
+<div id="city" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel"><%= t(:cities_title, count: 1)+" "+t(:form_add) %></h3>
+  </div>
+<div class="modal-body">
+	<% @city = City.new %>
+	<%= simple_form_for @city, :html => { :class => 'form-horizontal' }, :remote => true do |f| %>
+	<div class="city-errors"></div>
+		<%= f.input :postcode %>
+		<%= f.input :name %>
+		<%= f.input :country_id, collection: Country.order("name ASC"), include_blank: false %>
+
+	<div class="modal-footer form-actions">
+		<%= f.button :submit, :class => 'btn-primary' %>
+		<%= submit_tag t(:form_cancel), :type => :reset, :class => "city btn btn-danger", "data-dismiss" => "modal", "aria-hidden" => "true" %>
+	</div>
+<% end %>
+</div></div>
+
+<% else %>
+	<%= no_rights %>
+<% end %>

@@ -1,0 +1,11 @@
+<% if @brand.errors.any? %>
+  $(".brand-errors").empty();
+  $('.brand-errors').append('<div class="alert alert-error"><ul class="error-messages"></ul></div>');
+  <% @brand.errors.full_messages.each do |msg| %>
+    $('.brand-errors .error-messages').append('<%= escape_javascript msg %><br>');
+  <% end %>
+<% else %>
+  $("<%= escape_javascript(render @brand) %>").appendTo("select#product_brand_id");
+  $("button.close").click();
+  $(".brand-errors").empty();
+<% end %>

@@ -1,0 +1,33 @@
+<h1>
+	<%= @packagematerial.name %>
+</h1>
+
+<%= image_tag @packagematerial.image.url(:medium), class: "img-polaroid" %>
+
+<p><b><%= t("activerecord.attributes.packagematerial.code") %>:</b>
+<%= @packagematerial.code %></p>
+
+<p><b><%= t("activerecord.attributes.packagematerial.abbr") %>:</b>
+<%= @packagematerial.abbr %></p>
+
+<% if !@packagematerial.description.blank? %>
+<p><b><%= t("activerecord.attributes.packagematerial.description") %>:</b>
+	<%= content_tag("pre", @packagematerial.description) %>
+	</p>
+	<% end %>
+
+<% if !@packagematerial.http.blank? %>
+<p><b><%= t("activerecord.attributes.packagematerial.http") %>:</b>
+	<%= show_url(@packagematerial.name, @packagematerial.http) %>
+</p>
+<% end %>
+
+<hr>
+
+<hr>
+
+<p>
+	<%= link_to t(:link_edit, model: t("packagematerials_title.one")), edit_packagematerial_path(@packagematerial) %> |
+	<%= link_to t(:link_back, model: t("packagematerials_title.other")), packagematerials_path %> |
+	<%= link_to t("form.new", genus: t("form.n"), model: t("packagematerials_title.one")), new_packagematerial_path %>
+</p>

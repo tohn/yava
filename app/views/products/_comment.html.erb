@@ -1,0 +1,18 @@
+<div class="vrapper comment-id-<%= comment.id %> alert alert-<%= comment.veganity.color %>">
+<img class="vegbg" src="<%= comment.veganity.image %>">
+<div class="comment">
+	<p><%= content_tag('pre', comment.comment) %></p>
+	<hr>
+	<div class="reedde">
+		<% if current_user %>
+			<% if current_user.permission_id >= User::PERMISSIONS_DELETE or current_user.id == comment.user_id %>
+				<%#= t(:comment_edit)+" |" %>
+				<%= link_to t(:comment_delete), comment_path(comment.id), :remote => true, :method => :delete, data: { confirm: t(:comment_confirm) } %>
+			<% end %>
+		<% end %>
+	</div>
+	<div class="user-time">
+		<%= link_to comment.user.nickname, user_path(comment.user_id) %> vor <%= link_to time_ago_in_words(comment.created_at), comment_path(comment.id), :title => comment.created_at %>
+	</div>
+</div>
+</div>

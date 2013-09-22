@@ -1,0 +1,10 @@
+<h1><%= t("form.edit", model: t("classnames_title.one")) %></h1>
+
+<%= render 'form' %>
+
+<hr>
+
+<p>
+	<%= link_to t(:link_show, model: t("classnames_title.one")), @classname %> |
+	<%= link_to t(:link_back, model: t("classnames_title.other")), classnames_path %>
+</p>

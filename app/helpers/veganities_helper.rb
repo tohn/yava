@@ -1,0 +1,3 @@
+# VeganitiesHelper
+module VeganitiesHelper
+end

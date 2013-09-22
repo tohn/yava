@@ -1,0 +1,3 @@
+# LabelsHelper
+module LabelsHelper
+end

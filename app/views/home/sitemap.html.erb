@@ -1,0 +1,39 @@
+<% provide(:title, t(:sitemap_title)) %>
+
+<h1><%= t(:sitemap_title) %></h1>
+
+<%# for i in * ; do echo "<%= link_to t(\"${i}_title.other\"), ${i}_path % ><br>" ; done | grep -v -e home -e layouts -e sessions -e yava_mailer %>
+
+<p>
+<%= link_to t("brands_title.other"), brands_path %><br>
+<%= link_to t("categories_title.other"), categories_path %><br>
+<%= link_to t("cities_title.other"), cities_path %><br>
+<%= link_to t("classnames_title.other"), classnames_path %><br>
+<%= link_to t("comments_title.other"), comments_path %><br>
+<%= link_to t("features_title.other"), features_path %><br>
+<%= link_to t("ingredients_title.other"), ingredients_path %><br>
+<%= link_to t("inquiries_title.other"), inquiries_path %><br>
+<%#= link_to t("j_product_comments_title.other"), j_product_comments_path %>
+<%= link_to t("j_product_features_title.other"), j_product_features_path %><br>
+<%#= link_to t("j_product_inquiries_title.other"), j_product_inquiries_path %>
+<%= link_to t("j_product_labels_title.other"), j_product_labels_path %><br>
+<%= link_to t("labels_title.other"), labels_path %><br>
+<%= link_to t("manufacturers_title.other"), manufacturers_path %><br>
+<%= link_to t("nutvals_title.other"), nutvals_path %><br>
+<%= link_to t("packagematerials_title.other"), packagematerials_path %><br>
+<%= link_to t("products_title.other"), products_path %><br>
+<%= link_to t("subcategories_title.other"), subcategories_path %><br>
+<%= link_to t("users_title.other"), users_path %>
+</p>
+
+<hr>
+
+<p>
+<%= link_to t("index_title"), root_path %><br>
+<%= link_to t("about_title"), about_path %><br>
+<%= link_to t("search_title"), search_path %><br>
+<%= link_to t("sitemap_title"), sitemap_path %><br>
+<%= link_to t("tos_title"), tos_path %><br>
+<%= link_to t("pp_title"), pp_path %><br>
+<%= link_to t("stat_title"), stat_path %>
+</p>

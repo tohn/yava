@@ -1,0 +1,17 @@
+//$("<%#= escape_javascript(render @nutval) %>").appendTo("tr.nutval_sel");
+<% if @nutval.errors.any? %>
+	$(".nutval-errors").empty();
+	$('.nutval-errors').append('<div class="alert alert-error"><ul class="error-messages"></ul></div>');
+	<% @nutval.errors.full_messages.each do |msg| %>
+		$('.error-messages').append('<%= escape_javascript msg %><br>');
+	<% end %>
+<% else %>
+	$("input#product_nutval_id").val("<%= @nutval.id %>");
+	$("button.close").click();
+	$(".nutval-errors").empty();
+	$("#nutval").remove();
+	<% @nv = @nutval %>
+	$("<%= escape_javascript(render "products/nutval_form") %>").appendTo("body");
+	// change button
+	$("div.product_nutval_id a.btn").text("<%= t(:form_edit) %>");
+<% end %>

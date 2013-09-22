@@ -1,0 +1,3 @@
+# SubcategoriesHelper
+module SubcategoriesHelper
+end

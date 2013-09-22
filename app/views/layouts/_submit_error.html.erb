@@ -1,0 +1,21 @@
+<% if errors.any? %>
+	<div class="alert alert-error">
+		<p><b><%= errors.count %> <%= t(:form_error, :count => errors.count) %> <%= t(:form_error_desc) %></b></p>
+
+		<ul>
+			<% errors.full_messages.each do |msg| %>
+				<li><%= msg %></li>
+			<% end %>
+		</ul>
+	</div>
+<% end %>
+
+<!--
+<%# https://github.com/rafaelfranca/simple_form-bootstrap/blob/master/app/views/articles/_form.html.erb %>
+<%# if notification = f.error_notification %>
+	<div class="alert alert-error fade in">
+		<a class="close" data-dismiss="alert" href="#">&times;</a>
+		<%#= notification %>
+	</div>
+<%# end %>
+-->

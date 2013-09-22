@@ -1,0 +1,37 @@
+<% provide(:title, t("inquiries_title.other")) %>
+
+<h1><%= t("inquiries_title.other") %></h1>
+
+<div class="pagination center">
+	<%= will_paginate @inquiries %>
+</div>
+
+<table class="table table-striped table-condensed">
+  <thead>
+    <tr>
+      <th><%= t("activerecord.attributes.inquiry.typ") %></th>
+      <th><%= t("activerecord.attributes.inquiry.text") %></th>
+      <th><%= t("activerecord.attributes.inquiry.user_id") %></th>
+      <th><%= t("activerecord.attributes.inquiry.highlight") %></th>
+      <th><%= t("activerecord.attributes.inquiry.veganity_id") %></th>
+      <th><%= t("activerecord.attributes.inquiry.product_id") %></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @inquiries.each do |inquiry| %>
+      <tr class="<%= inquiry.veganity.color %>">
+        <td><%= inquiry.typ ? "Antwort" : "Anfrage" %></td>
+        <td><%= link_to truncate(inquiry.text), inquiry %></td>
+        <td><%= link_to inquiry.user.nickname, user_path(inquiry.user_id) %></td>
+        <td><%= inquiry.highlight ? "Ja" : "Nein" %></td>
+        <td><%= inquiry.veganity.name %></td>
+        <td><%= link_to inquiry.product.name, product_path(inquiry.product_id) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="pagination center">
+	<%= will_paginate @inquiries %>
+</div>

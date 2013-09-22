@@ -1,0 +1,18 @@
+<div class="vrapper inquiry-id-<%= inquiry.id %> alert alert-<%= inquiry.veganity.color %> type-<%= inquiry.typ %> highlight-<%= inquiry.highlight %>">
+<img class="vegbg" src="<%= inquiry.veganity.image %>">
+<div class="inquiry">
+	<p><%= content_tag('pre', inquiry.text) %></p>
+	<hr>
+	<div class="reedde">
+		<% if current_user %>
+			<%# if current_user.permission_id >= User::PERMISSIONS_INQUIRY or current_user.id == inquiry.user_id %>
+			<% if current_user.permission_id >= User::PERMISSIONS_INQUIRY %>
+				<%= link_to t(:comment_delete), inquiry_path(inquiry.id), :remote => true, :method => :delete, data: { confirm: t(:comment_confirm) } %>
+			<% end %>
+		<% end %>
+	</div>
+	<div class="user-time">
+		<%= link_to inquiry.user.nickname, user_path(inquiry.user_id) %> vor <%= link_to time_ago_in_words(inquiry.created_at), inquiry_path(inquiry.id), :title => inquiry.created_at %>
+	</div>
+</div>
+</div>

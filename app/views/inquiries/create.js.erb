@@ -1,0 +1,14 @@
+<% if @inquiry.errors.any? %>
+  $(".inquiry-errors").empty();
+  $('.inquiry-errors').append('<div class="alert alert-error"><ul class="error-messages"></ul></div>');
+  <% @inquiry.errors.full_messages.each do |msg| %>
+    $('.inquiry-errors .error-messages').append('<%= escape_javascript msg %><br>');
+  <% end %>
+<% else %>
+  $("<%= escape_javascript(render "products/inquiry", :inquiry => @inquiry) %>").appendTo("div.inquiries");
+  $("div.veganity p:nth-of-type(3)").replaceWith("<p><%= @inquiry.veganity.name.capitalize + " " + t(:veganity_inquiries) %></p>")
+  $("div.veganity p:nth-of-type(5)").replaceWith("<p><%= @inquiry.product.veganity.name.capitalize %></p>")
+  $("textarea#inquiry_text").val("");
+  $("button.close").click();
+  $(".inquiry-errors").empty();
+<% end %>

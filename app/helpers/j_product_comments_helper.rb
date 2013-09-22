@@ -1,0 +1,3 @@
+# JProductCommentsHelper
+module JProductCommentsHelper
+end

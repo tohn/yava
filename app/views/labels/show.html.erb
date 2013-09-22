@@ -1,0 +1,18 @@
+<h2><%= @label.name %></h2>
+
+<p>
+  <%= image_tag @label.image.url(:medium), class: "img-polaroid" %>
+</p>
+<p>
+  <%= show_url @label.name, @label.source %>
+</p>
+<p>
+  <%= @label.description %>
+</p>
+<p>
+  <strong>Feature:</strong>
+  <%= @label.g_feature %>
+</p>
+
+<%= link_to 'Edit', edit_label_path(@label) %> |
+<%= link_to 'Back', labels_path %>

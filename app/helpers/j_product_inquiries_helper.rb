@@ -1,0 +1,3 @@
+# JProductInquiriesHelper
+module JProductInquiriesHelper
+end

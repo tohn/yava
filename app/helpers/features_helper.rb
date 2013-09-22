@@ -1,0 +1,3 @@
+# FeaturesHelper
+module FeaturesHelper
+end

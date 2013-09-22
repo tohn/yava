@@ -1,0 +1,7 @@
+<h1><%= t("form.edit", model: t(:products_title, count: 1)) %></h1>
+
+<%= render 'form' %>
+
+<hr>
+<%= link_to t(:link_show, model: t(:products_title, count: 1)), @product %> |
+<%= link_to t(:link_back, model: t(:products_title, count: 2)), products_path %>

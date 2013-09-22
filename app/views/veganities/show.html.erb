@@ -1,0 +1,20 @@
+<% provide(:title, t(:veganities_title, count: 1)+": "+@veganity.name) %>
+
+<h1><%= @veganity.name %></h1>
+
+<p>
+	<b><%= t("activerecord.attributes.veganity.description") %>:</b>
+	<%= @veganity.description %>
+</p>
+
+<p>
+	<b><%= t("activerecord.attributes.veganity.image") %>:</b>
+	<%= image_tag @veganity.image.url(:medium), class: "img-polaroid" %>
+</p>
+
+<hr>
+
+<p>
+	<%= link_to t(:link_edit, model: t("veganities_title.one")), edit_veganity_path(@veganity) %> |
+	<%= link_to t(:link_back, model: t("veganities_title.other")), veganities_path %>
+</p>

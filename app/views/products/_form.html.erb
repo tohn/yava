@@ -1,0 +1,91 @@
+<%# provide(:title, t("form.edit", model: t(:products_title, count: 1))+": "+@product.name) %>
+
+<% if current_user %>
+
+<%= simple_form_for @product, :html => { :class => 'form-horizontal', multipart: true } do |f| %>
+<%= render "layouts/submit_error", :errors => @product.errors %>
+
+	<% search = request.query_parameters["gtin"] %>
+	<% if !search.blank? and search.to_i != 0 %>
+	  <%= f.input :gtin, input_html: { value: search.to_i } %>	
+	<% else %>
+	  <%= f.input :gtin %>
+	<% end %>
+
+	<% if !@product.image.blank? %>
+		<%= f.input :image_in_use do %>
+			<%= image_tag @product.image.url(:thumb), class: "img-polaroid" %>
+		<% end %>
+	<% end %>
+	<%= f.input :image do %>
+		<%= f.file_field :image %>
+	<% end %>
+	<% if !search.blank? and search.to_i == 0 %>
+	  <%= f.input :name, input_html: { value: search.to_s } %>
+	<% else %>
+	  <%= f.input :name %>
+	<% end %>
+	<%= f.input :description, :input_html => { :class => "span8", :rows => 10 } %>
+	<%#= f.input :ingredient, :input_html => { :value => join_stuff(@product.ingredient, :ingredient, false), :class => "span8", :rows => 10 } %>
+	<%= f.input :ingredients, :input_html => { :class => "span8", :rows => 10 } %>
+	<%= f.input :contains, :input_html => { :class => "span8", :rows => 5 } %>
+	<%= f.input :traces, :input_html => { :class => "span8", :rows => 5 } %>
+	<%= f.input :category_id, collection: Category.all, as: :grouped_select, group_method: :subcategory %>
+	<%= f.input :nutval_id do %>
+		<a href="#nutval" role="button" class="btn" data-toggle="modal">
+			<%= @product.nutval.blank? ? t(:form_add) : t(:form_edit) %>
+		</a>
+	<% end %>
+	<% if @product.nutval.blank? %>
+	  <%= f.hidden_field :nutval_id, value: "" %>
+	<% else %>
+	  <%= f.hidden_field :nutval_id, value: @product.nutval_id %>
+	<% end %>
+	<%= f.input :packagematerial_id, collection: Packagematerial.order("code asc, LOWER(name) ASC"), label_method: :get_name, hint: "<a role='button' href='#packagematerial' class='btn' data-toggle='modal'>#{t("form.new", genus: t("form.n"), model: t("packagematerials_title.one"))}</a>" %>
+	<%= f.input :packagesize %>
+	<%# Source: http://www.auswaertiges-amt.de/cae/servlet/contentblob/332368/publicationFile/3097/Staatennamen.pdf %>
+	<%= f.input :country_id, collection: Country.order("LOWER(name) ASC") %>
+	<%= f.input :brand_id, collection: Brand.order("LOWER(name) ASC"), hint: "<a href='#brand' role='button' class='btn' data-toggle='modal'>#{t("form.new", genus: t("form.f"), model: t(:brands_title, count: 1))}</a>" %>
+	<% if current_user.permission_id >= User::PERMISSIONS_SOURCE %>
+		<%= f.input :source %>
+		<%= f.input :veganity_source_id, collection: Veganity.where("id != ?", Veganity::UNKNOWN), include_blank: false %>
+	<% end %>
+	<% if !@product.id.blank? %>
+		<%= f.input :label do %>
+			<a role="button" href="#label" class="btn" data-toggle="modal"><%= @product.label.blank? ? t(:form_add) : t(:form_edit) %></a>
+		<% end %>
+		<%= f.input :feature do %>
+			<a role="button" href="#feature" class="btn" data-toggle="modal"><%= @product.feature.blank? ? t(:form_add) : t(:form_edit) %></a>
+		<% end %>
+	<% end %>
+	<div class="form-actions">
+		<%= f.button :submit, :class => 'btn-primary' %>
+		<%= submit_tag t(:form_cancel), :type => :reset, :class => "btn btn-danger" %>
+	</div>
+
+<% end %>
+
+<!-- Packagematerial -->
+<%= render "products/packagematerial_form" %>
+
+<!-- Brand -->
+<%= render "products/brand_form" %>
+
+<!-- Label/Feature -->
+<!-- shown only if the product already exists -->
+<% if !@product.id.blank? %>
+	<%= render "products/label_form" %>
+	<%= render "products/feature_form" %>
+<% end %>
+
+<!-- Nutval -->
+<% if @product.nutval.blank? %>
+	<% @nv = Nutval.new %>
+<% else %>
+	<% @nv = @product.nutval %>
+<% end %>
+<%= render "products/nutval_form" %>
+
+<% else %>
+	<%= no_rights %>
+<% end %>

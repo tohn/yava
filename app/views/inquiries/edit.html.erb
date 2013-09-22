@@ -1,0 +1,9 @@
+<h1><%= t("form.edit", model: t("inquiries_title.one")) %></h1>
+
+<%= render 'form' %>
+
+<hr>
+<p>
+<%= link_to t(:link_show, model: t("inquiries_title.one")), @inquiry %> |
+<%= link_to t(:link_back, model: t("inquiries_title.other")), inquiries_path %>
+</p>

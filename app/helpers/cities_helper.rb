@@ -1,0 +1,3 @@
+# CitiesHelper
+module CitiesHelper
+end

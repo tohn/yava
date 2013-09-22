@@ -1,0 +1,27 @@
+<% if current_user %>
+
+<div id="comment" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-focus-on="input:first">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel"><%= t("comments_title.one") %></h3>
+  </div>
+  <div class="modal-body">
+	<% @comment = Comment.new %>
+	<%= simple_form_for @comment, :html => { :class => 'form-horizontal' }, :remote => true do |f| %>
+	<div class="comment-errors"></div>
+
+		  <%= f.input :veganity_id, collection: Veganity.all, 
+include_blank: false %>
+		  <%= f.input :comment, input_html: { rows: 10, class: "span4" } %>
+		  <%= f.hidden_field :product_id, value: @product.id %>
+		  <%= f.hidden_field :user_id, value: current_user.id %>
+
+	<div class="form-actions modal-footer">
+		<%= f.button :submit, :class => 'btn-primary' %>
+		<%= submit_tag t(:form_cancel), :type => :reset, :class => "btn btn-danger", "data-dismiss" => "modal", "aria-hidden" => "true" %>
+	</div>
+<% end %>
+</div>
+</div>
+
+<% end %>

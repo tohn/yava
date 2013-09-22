@@ -1,0 +1,10 @@
+<h1><%%= t("form.edit", model: t("<%= plural_table_name %>_title.one")) %></h1>
+
+<%%= render 'form' %>
+
+<hr>
+
+<p>
+	<%%= link_to t(:link_show, model: t("<%= plural_table_name %>_title.one")), @<%= singular_table_name %> %> |
+	<%%= link_to t(:link_back, model: t("<%= plural_table_name %>_title.other")), <%= index_helper %>_path %>
+</p>

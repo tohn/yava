@@ -1,0 +1,3 @@
+# ClassnamesHelper
+module ClassnamesHelper
+end

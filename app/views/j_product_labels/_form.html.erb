@@ -1,0 +1,33 @@
+<% if current_user %>
+<%= form_for(@j_product_label) do |f| %>
+  <% if @j_product_label.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@j_product_label.errors.count, "error") %> prohibited this j_product_label from being saved:</h2>
+
+      <ul>
+      <% @j_product_label.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :product_id %><br>
+    <%= f.number_field :product_id %>
+  </div>
+  <div class="field">
+    <%= f.label :label_id %><br>
+    <%= f.number_field :label_id %>
+  </div>
+  <div class="field">
+    <%= f.label :user_id %><br>
+    <%= f.number_field :user_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+<% else %>
+		<%= no_rights %>
+<% end %>

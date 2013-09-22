@@ -1,0 +1,23 @@
+<% if current_user %>
+
+	<%= simple_form_for @user, :html => { :class => 'form-horizontal' } do |f| %>
+	<%= render "layouts/submit_error", :errors => @user.errors %>
+
+	<div class="form-inputs">
+		<%= f.input :name %>
+		<%= f.input :anonymize_name, :as => :boolean %>
+		<%= f.input :nickname %>
+		<%= f.input :email %>
+		<% if current_user.permission_id >= User::PERMISSIONS_ADMIN %>
+		  <%= f.input :permission_id %>
+		<% end %>
+	</div>
+	<div class="form-actions">
+		<%= f.button :submit, :class => 'btn-primary' %>
+		<%= submit_tag t(:form_cancel), :type => :reset, :class => "btn btn-danger" %>
+	</div>
+<% end %>
+
+<% else %>
+  <%= no_rights %>
+<% end %>

@@ -1,0 +1,18 @@
+<p>
+  <strong>Postcode:</strong>
+  <%= @city.postcode %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @city.name %>
+</p>
+
+<p>
+  <strong>Country:</strong>
+  <%= @city.country.name %>
+</p>
+
+<hr>
+<%= link_to t(:link_edit, model: t(:cities_title, count: 1)), edit_city_path(@city) %> |
+<%= link_to t(:link_back, model: t(:cities_title, count: 2)), cities_path %>

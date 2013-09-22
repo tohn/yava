@@ -1,0 +1,43 @@
+<%# provide(:title, t("form.edit", model: t(:ingredients_title, count: 1))+": "+UnicodeUtils.titlecase(@ingredient.name)) %>
+
+<% if current_user %>
+  <% if current_user.permission_id >= User::PERMISSIONS_INGREDIENT %>
+	<%= simple_form_for @ingredient, :html => { :class => 'form-horizontal' } do |f| %>
+		<%= render "layouts/submit_error", :errors => @ingredient.errors %>
+		<%= f.input :name %>
+		<% if !@ingredient.id.blank? %>
+		  <%= f.input :ingredient_synonym do %>
+		    <a role="button" href="#ingredient_synonym" class="btn" data-toggle="modal"><%= !@ingredient.ingredient_synonym.any? ? t(:form_add) : t(:form_edit) %></a>
+		  <% end %>
+		<% end %>
+		<%#= f.input :ingredient_synonym %>
+		<%#= f.input :classname_id, collection: Classname.order("lower(sg) asc"), label_method: :get_sg_w_abbr %>
+		<% if !@ingredient.id.blank? %>
+		  <%= f.input :classname do %>
+		    <a role="button" href="#ingredient_classname" class="btn" data-toggle="modal"><%= !@ingredient.classname.any? ? t(:form_add) : t(:form_edit) %></a>
+		  <% end %>
+		<% end %>
+		<%= f.input :image %>
+		<%= f.input :description, :input_html => { :class => "span8", :rows => 10 } %>
+		<%= f.input :source %>
+		<%= f.input :hide, as: :boolean %>
+		<% if current_user.permission_id >= User::PERMISSIONS_ADMIN %>
+		    <%= f.input :veganity_id, :collection => Veganity.all, include_blank: false %>
+		    <%= f.input :fixed, as: :boolean %>
+		<% end %>
+		<div class="form-actions">
+			<%= f.hidden_field :user_id, :value => current_user.id %>
+			<%= f.button :submit, :class => 'btn-primary' %>
+			<%= submit_tag t(:form_cancel), :type => :reset, :class => "btn btn-danger" %>
+		</div>
+	<% end %>
+	<% if !@ingredient.id.blank? %>
+	  <%= render "ingredients/ingredient_synonym_form" %>
+	  <%= render "ingredients/ingredient_classname_form" %>
+	<% end %>
+  <% else %>
+    <%= t(:no_rights2) %>
+  <% end %>
+<% else %>
+	<%= no_rights %>
+<% end %>

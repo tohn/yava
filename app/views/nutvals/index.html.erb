@@ -1,0 +1,50 @@
+<h1>Listing nutvals</h1>
+
+<div class="center"><%= will_paginate @nutvals %></div>
+
+<table class="table table-striped table-condensed">
+  <thead>
+    <tr>
+      <th>Energy</th>
+      <th>Proteins</th>
+      <th>Carbohydrates</th>
+      <th>Sugar</th>
+      <th>Fat</th>
+      <th>Saturated</th>
+      <th>Monounsaturated</th>
+      <th>Polyunsaturated</th>
+      <th>Roughages</th>
+      <th>Natrium</th>
+      <th>Alcohol</th>
+      <th>User</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @nutvals.each do |nutval| %>
+      <tr>
+        <td><%= nutval.energy %></td>
+        <td><%= nutval.proteins %></td>
+        <td><%= nutval.carbohydrates %></td>
+        <td><%= nutval.sugar %></td>
+        <td><%= nutval.fat %></td>
+        <td><%= nutval.saturated %></td>
+        <td><%= nutval.monounsaturated %></td>
+        <td><%= nutval.polyunsaturated %></td>
+        <td><%= nutval.roughages %></td>
+        <td><%= nutval.natrium %></td>
+        <td><%= nutval.alcohol %></td>
+        <td><%= nutval.user.nickname unless nutval.user_id.blank? %></td>
+<!--        <td><%#= link_to 'Show', nutval %></td>
+        <td><%#= link_to 'Edit', edit_nutval_path(nutval) %></td>
+		<td><%#= link_to 'Destroy', nutval, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="center"><%= will_paginate @nutvals %></div>
+
+<hr>
+
+<p><%= link_to 'New Nutval', new_nutval_path %></p>

@@ -1,0 +1,33 @@
+<% if !request.query_parameters[:auth].blank? %>
+
+<%= simple_form_for @user, :html => { :class => 'form-horizontal' } do |f| %>
+	<%= render "layouts/submit_error", :errors => @user.errors %>
+
+	<div class="form-inputs">
+			<%# Provider.find_by_name(auth["provider"].capitalize) %>
+		<% @prov = request.query_parameters[:auth][:provider] %>
+		<%#= f.input :provider_id, input_html: { value: Provider.select("id").where("LOWER(name) = ?", @prov).first.id } %>
+		<%= f.input :provider_id, collection: Provider.all, label_method: :fullname, selected: Provider.select("id").where("LOWER(name) = ?", @prov).first.id, hint: "Don't change this!" %>
+		<% if @prov == "facebook" %>
+			<%= f.input :uid, input_html: { value: request.query_parameters[:auth][:id] }, hint: "Don't change this!" %>
+			<%= f.input :nickname, input_html: { value: request.query_parameters[:auth][:username] } %>
+		<% elsif @prov == "google_oauth2" %>
+			<%= f.input :uid, input_html: { value: request.query_parameters[:auth][:uid] }, hint: "Don't change this!" %>
+			<%= f.input :nickname, input_html: { value: request.query_parameters[:auth][:info][:email].split("@")[0] } %>
+		<% else %>
+			<%= f.input :uid, input_html: { value: request.query_parameters[:auth][:uid] }, hint: "Don't change this!" %>
+			<%= f.input :nickname, input_html: { value: request.query_parameters[:auth][:info][:username] } %>
+		<% end %>
+		<%= f.input :name, input_html: { value: request.query_parameters[:auth][:info][:name] } %>
+		<%= f.input :anonymize_name, :as => :boolean %>
+		<%= f.input :email, input_html: { value: request.query_parameters[:auth][:info][:email] } %>
+	</div>
+	<div class="form-actions">
+		<%= f.button :submit, :class => 'btn-primary' %>
+		<%= submit_tag t(:form_cancel), :type => :reset, :class => "btn btn-danger" %>
+	</div>
+<% end %>
+
+<% else %>
+	<%= no_rights %>
+<% end %>

@@ -1,0 +1,12 @@
+<% if @city.errors.any? %>
+  $(".city-errors").empty();
+  $('.city-errors').append('<div class="alert alert-error"><ul class="error-messages"></ul></div>');
+  <% @city.errors.full_messages.each do |msg| %>
+    $('.city-errors .error-messages').append('<%= escape_javascript msg %><br>');
+  <% end %>
+<% else %>
+  $("<%= escape_javascript(render @city) %>").appendTo("select#manufacturer_city_id");
+  //$("input.city").click();
+  $("button.close").click();
+  $(".city-errors").empty();
+<% end %>

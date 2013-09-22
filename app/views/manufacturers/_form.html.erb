@@ -1,0 +1,20 @@
+<% if current_user %>
+	<%= simple_form_for @manufacturer, :html => { :class => 'form-horizontal' } do |f| %>
+		<%= render "layouts/submit_error", :errors => @manufacturer.errors %>
+		<%= f.input :name %>
+		<%= f.input :image %>
+		<%= f.input :street %>
+		<%= f.input :city_id, collection: City.order("name ASC"), label_method: :address, hint: "<a href='#city' role='button' class='btn' data-toggle='modal'>#{t("form.new2", genus: t("form.f"), model: t("cities_title.one", count: 1))}</a>" %>
+		<%= f.input :http %>
+		<%= f.input :email %>
+		<%= f.input :tel %>
+		<%= f.input :fax %>
+		<div class="form-actions">
+			<%= f.button :submit, :class => 'btn-primary' %>
+			<%= submit_tag t(:form_cancel), :type => :reset, :class => "btn btn-danger" %>
+		</div>
+	<% end %>
+	<%= render "manufacturers/city_form" %>
+<% else %>
+	<%= no_rights %>
+<% end %>

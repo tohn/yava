@@ -1,0 +1,7 @@
+<h1><%= t("form.edit", model: t("ingredients_title.one")) %></h1>
+
+<%= render 'form' %>
+
+<hr>
+<p><%= link_to t(:link_show, model: t("ingredients_title.one")), @ingredient %> |
+<%= link_to t(:link_show, model: t("ingredients_title.other")), ingredients_path %></p>

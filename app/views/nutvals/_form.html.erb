@@ -1,0 +1,84 @@
+<% if current_user %>
+<%= form_for(@nutval) do |f| %>
+  <% if @nutval.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@nutval.errors.count, "error") %> prohibited this nutval from being saved:</h2>
+
+      <ul>
+      <% @nutval.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </td>
+  <% end %>
+
+<table>
+	<tr>
+		<th></th>
+		<td><%= t :nutval_info %></td>
+	</tr>
+	<tr>
+		<th><%= f.label :energy, t(:nutval_energy) %></th>
+		<td><%= f.text_field :energy %></td>
+		<td>kJ</td>
+	</tr>
+	<tr>
+		<th><%= f.label :proteins, t(:nutval_proteins) %></th>
+		<td><%= f.text_field :proteins %></td>
+		<td>g</td>
+	</tr>
+	<tr>
+		<th><%= f.label :carbohydrates, t(:nutval_carbohydrates) %></th>
+		<td><%= f.text_field :carbohydrates %></td>
+		<td>g</td>
+	</tr>
+	<tr>
+		<th><%= f.label :sugar, t(:nutval_sugar) %></th>
+		<td><%= f.text_field :sugar %></td>
+		<td>g</td>
+	</tr>
+	<tr>
+		<th><%= f.label :fat, t(:nutval_fat) %></th>
+		<td><%= f.text_field :fat %></td>
+		<td>g</td>
+	</tr>
+	<tr>
+		<th><%= f.label :saturated, t(:nutval_saturated) %></th>
+		<td><%= f.text_field :saturated %></td>
+		<td>g</td>
+	</tr>
+	<tr>
+		<th><%= f.label :monounsaturated, t(:nutval_monounsaturated) %></th>
+		<td><%= f.text_field :monounsaturated %></td>
+		<td>g</td>
+	</tr>
+	<tr>
+		<th><%= f.label :polyunsaturated, t(:nutval_polyunsaturated) %></th>
+		<td><%= f.text_field :polyunsaturated %></td>
+		<td>g</td>
+	</tr>
+	<tr>
+		<th><%= f.label :roughages, t(:nutval_roughages) %></th>
+		<td><%= f.text_field :roughages %></td>
+		<td>g</td>
+	</tr>
+	<tr>
+		<th><%= f.label :natrium, t(:nutval_natrium) %></th>
+		<td><%= f.text_field :natrium %></td>
+		<td>g</td>
+	</tr>
+	<tr>
+		<th><%= f.label :alcohol, t(:nutval_alcohol) %></th>
+		<td><%= f.text_field :alcohol %></td>
+		<td>% vol.</td>
+	</tr>
+	<tr>
+		<th></th>
+		<td><%= f.submit %></td>
+	</tr>
+</table>
+
+<% end %>
+<% else %>
+		<%= no_rights %>
+<% end %>

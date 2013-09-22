@@ -1,0 +1,12 @@
+<% if @ingredient_synonym.errors.any? %>
+  $(".ingredient_synonym-errors").empty();
+  $('.ingredient_synonym-errors').append('<div class="alert alert-error"><ul class="error-messages"></ul></div>');
+  <% @ingredient_synonym.errors.full_messages.each do |msg| %>
+    $('.ingredient_synonym-errors .error-messages').append('<%= escape_javascript msg %><br>');
+  <% end %>
+<% else %>
+  $("<%= escape_javascript(render @ingredient_synonym) %>").appendTo("div.ingredient_synonyms");
+  $("select#ingredient_synonym_label_id").val("selected");
+  $(".ingredient_synonym-errors").empty();
+  // TODO: change button
+<% end %>

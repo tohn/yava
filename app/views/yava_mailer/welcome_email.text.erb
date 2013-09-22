@@ -1,0 +1,17 @@
+Willkommen zu YAVA, <%= @user.name %>!
+
+Du hast dich erfolgreich bei YAVA via <%= @user.provider.fullname %> angemeldet!
+
+Dein Spitzname lautet: <%= @user.nickname %>.
+
+Um dich einzuloggen, verwende einfach diesen Link:
+<%= @loginurl %>
+
+Um Produktanfragen versenden zu können, musst du deine Email-Adresse
+bestätigen.
+Dazu kannst du folgenden Link verwenden:
+<%= @hashurl %>
+
+Danke fürs Anmelden und einen schönen Tag noch! :)
+
+	das YAVA-Team

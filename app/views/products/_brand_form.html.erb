@@ -1,0 +1,43 @@
+<% if current_user %>
+
+<div id="brand" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-focus-on="input:first">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel"><%= t("brands_title.one") %></h3>
+  </div>
+    <div class="modal-body">
+  <% @brand = Brand.new %>
+  <%= simple_form_for @brand, :html => { :class => 'form-horizontal' }, :remote => true do |f| %>
+    <div class="brand-errors"></div>
+
+      <%= f.input :name %>
+      <%= f.input :manufacturer_id, collection: Manufacturer.order("LOWER(name) ASC"), include_blank: false, hint: "<a role='button' href='#manufacturer' class='btn' onclick='$(\"div#manufacturer\").show();'>#{t("form.new2", genus: t("form.c1"), model: t("manufacturers_title.one"))}</a>" %>
+    
+    <div class="form-actions">
+      <%= f.button :submit, :class => 'btn-primary' %>
+      <%= submit_tag t(:form_cancel), :type => :reset, :class => "btn btn-danger", "data-dismiss" => "modal", "aria-hidden" => "true" %>
+    </div>
+    
+  <% end %>
+</div>
+
+  <div id="manufacturer" style="display: none">
+  <div class="modal-body">
+    <% @manufacturer = Manufacturer.new %>
+    <%= simple_form_for @manufacturer, :html => { :class => 'form-horizontal' }, :remote => true do |f| %>
+      <div class="manufacturer-errors"></div>
+      
+	<%= f.input :name %>
+      
+      <div class="form-actions">
+	<%= f.button :submit, :class => 'btn-primary' %>
+	<%= submit_tag t(:form_cancel), :type => :reset, :class => "btn btn-danger", :onclick => "$(\"div#manufacturer\").hide();" %>
+      </div>
+      
+    <% end %>
+  </div>
+</div>
+</div>
+<% else %>
+  <%= no_rights %>
+<% end %>

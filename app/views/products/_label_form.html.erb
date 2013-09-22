@@ -1,0 +1,37 @@
+<% if current_user %>
+
+<div id="label" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-focus-on="input:first">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel"><%= t("labels_title.other") %></h3>
+  </div>
+
+  <div class="modal-body">
+		  <div class="labels">
+	<% @product.j_product_label.select(["labels.name", "j_product_labels.id"]).joins(:label).order("labels.name ASC").map do |l| %>
+	<p>
+		<%= l.name %>
+		<%= link_to "<i class='icon-minus'></i>".html_safe, j_product_label_path(l.id), :onclick => "$(this).parents('p').remove();", :remote => true, :method => :delete %>
+	</p>
+	<% end %>
+</div>
+
+	<% @j_product_label = JProductLabel.new %>
+	<%= simple_form_for @j_product_label, :html => { :class => 'form-horizontal' }, :remote => true do |f| %>
+	<div class="j_product_label-errors"></div>
+		  <%= f.hidden_field :product_id, value: @product.id %>
+		  <%= f.hidden_field :user_id, value: current_user.id %>
+		  <%= f.input :label_id, collection: Label.order("LOWER(name) ASC"), hint: "<a role='button' class='btn' onclick=\"$(this).parents('form').submit();\">#{t(:form_add)}</a>" %>
+
+	<div class="form-actions">
+		<%#= f.button :submit, :class => 'btn-primary' %>
+		<%= submit_tag t(:form_cancel), :type => :reset, :class => "btn btn-danger", "data-dismiss" => "modal", "aria-hidden" => "true" %>
+	</div>
+<% end %>
+
+</div>
+</div>
+
+<% else %>
+	<%= no_rights %>
+<% end %>

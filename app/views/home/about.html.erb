@@ -1,0 +1,78 @@
+<% provide(:title, t(:about_title)) %>
+	<h1><%= t :about_title %></h1>
+
+<p>Diese Seite soll verschiedene Fragen klären.</p>
+
+<h3><abbr title="Frequently Asked Questions">FAQ</abbr></h3>
+
+<div class="faq">
+
+	<h4>Was bedeutet Veganität?</h4>
+	<p>Diese bedeutet wie bzw. ob etwas vegan ist.</p>
+	<hr>
+
+	<h4>Wie wird die Veganität berechnet?</h4>
+	<p>Die Veganität eines Produktes wird durch diese 3 Faktoren berechnet:</p>
+	<ul>
+		<li>Zutaten</li>
+		<li>Quelle bzw. Produktanfragen</li>
+		<li>Kommentare</li>
+	</ul>
+	<p>Die Zutaten werden dabei jeweils auf die Veganität untersucht und ergeben somit schonmal eine Basis für die Veganität.<br>
+	Dabei können natürlich immer noch tierische Bestandteile nicht deklariert werden, weil sie nicht deklarierungspflichtig sind oder im Herstellungsprozess verwendet wurden. In diesem Fall kann eine Produktanfrage gestellt werden, die dies klären soll.<br>
+	Gibt es dabei oder nach einiger Zeit Fragen, können die Kommentare dazu genutzt werden, darauf hinzuweisen.</p>
+	<hr>
+
+	<h4>Sind alle Daten wirklich frei und können heruntergeladen werden?</h4>
+	<p>Jein. Es sind alle bis auf persönliche Daten frei, d.h. die Tabellen <code>users</code> und <code>emailhashes</code> sind nicht frei.<br>
+	Alle anderen Daten sind frei und können <a href="//dump.yava.yhaupenthal.org">hier als <a href="http://www.postgresql.org/">PostgreSQL</a>-Dump heruntergeladen werden</a>.<br>
+	Drei Dateien sind dabei relevant:</p>
+	<ul>
+		<li><code>dump_without_schema-2013-07-10-21-42-00.pg.dump</code></li>
+		<li><code>dump_with_schema-2013-07-10-21-42-00.pg.dump</code></li>
+		<li><code>schema-2013-07-10-21-42-00.pg.sch</code></li>
+	</ul>
+	<p>Die drei Dateien werden täglich neu erstellt - was am Zeitstempel, in diesem Fall <code>2013-07-10-21-42-00</code> zu erkennen ist.<br>
+	Das Schema enthält dabei alle <code>Copy</code>-Befehle, um die Datenbank zu erstellen. Eine Beispiel-Tabelle für <code>users</code> (mit Schema) <a href="//dump.yava.yhaupenthal.org/users-example.pg.dump">gibt es hier</a>, eine für <code>emailhashes</code> <a href="//dump.yava.yhaupenthal.org/emailhashes-example.pg.dump">hier</a>.<br>
+	Die beiden anderen Dateien enthalten entweder alle Daten - bis auf <code>users</code> und <code>emailhashes</code> (und das Schema).</p>
+	<p>In Zukunft soll es noch inkrementelle Dateien und/oder eine API geben, um die Last auf dem Server zu reduzieren.</p>
+	<hr>
+
+	<h4>Wieso kann ich mich nur über die vorgegebenen Anbieter anmelden?</h4>
+	<p>Ich wollte es vermeiden, auf dem Server Passwörter zu speichern und stattdessen Dienste zu benutzen, wo viele schon einen Account haben.<br>
+	In Zeiten von <a href="https://de.wikipedia.org/wiki/Prism">Prism</a> ist das natürlich nicht optimal, daher meldet mir gerne neue Anbieter (hier gibt es einige: <a href="https://openid.net/get-an-openid/">[1]</a>, <a href="https://de.wikipedia.org/wiki/OpenID#Spezialisierte_OpenID-Anbieter">[2]</a>, <a href="http://openiddirectory.com/openid-providers-c-1.html">[3]</a>, <a href="https://github.com/intridea/omniauth/wiki/List-of-Strategies">[4]</a>) bzw. <a href="http://blog.brockha.us/archives/491-Einen-eigenen-OpenID-Server-einrichten.html">baut eigene</a>.<br>
+	Ich brauche generell nicht viel an Daten von einer*einem Anbieter*in.</p>
+	<hr>
+
+	<h4>Gemeinfreiheit? Warum? Und was ist das?</h4>
+	<p>Gemeinfreiheit bedeutet im Prinzip, dass alle Daten frei sind und größtmögliche Transparenz vorherrscht. Die Daten gehören somit der Gemeinheit, also allen.<br>
+	Ich bezeichne das als Win-Win-Situation für alle, denn die Verbraucher*innen haben mehr Informationen über die Lebensmittel und gleichzeitig wird so für die Hersteller*innen geworben.</p>
+	<p>Als Lizenz habe ich mich für den Einsatz von <a href="https://creativecommons.org/publicdomain/zero/1.0/deed.de">CC0</a> entschieden.<br>
+	Dies gilt allerdings nur für die oben angegeben Daten, nicht den Code an sich. Dieser ist als <a href="https://www.gnu.org/licenses/gpl.txt">GPLv3</a> auf <a href="https://github.com/tohn/bachelor">Github</a> verfügbar.</p>
+	<hr>
+
+	<h4>Gibt es das auch als App?</h4>
+	<p>Um alles schön plattformübergreifend zu halten, d.h. für alle (mobilen) Betriebssysteme nutzbar zu sein, soll es YAVA auch als App geben.<br>
+	<a href="//yhaupenthal.org/bachelor.htm">Hier gibt es</a> die Android-Version.</p>
+	<hr>
+	
+	<h4>Was sollen die Punkte?</h4>
+	<p>Die Punkte sollen einen Anreiz bieten, etwas zu "leisten". 
+Verschiedene Aktionen werden damit mit unterschiedlichen Punkten "vergütet".</p>
+	<hr>
+	
+	<h4>Was wird beim Anmelden über mich gespeichert?</h4>
+	<p>Ich brauche lediglich einen Namen, einen Nicknamen und eine E-Mailadresse.<br>
+	Zusätzlich bekomme ich von dem*der Anbieter*in noch eine UID, die aber nur zum Anmelden genutzt wird.</p>
+	<p>Der Name wird dabei nur genutzt, wenn du eine Produktanfrage sendest und kann entweder in der Produktanfrage sichtbar sein (und damit für alle), oder durch "XYZ" ersetzt werden.<br>
+	Der Nickname wird überall angezeigt und identifiziert euch innerhalb der Seite.<br>
+	Die E-Mailadresse wird ebenso wie der Name für Produktanfragen benutzt (als <code>From</code>)</p>
+	<p>Alle drei Informationen können im Profil geändert werden.</p>
+	<hr>
+
+	<h4>Ich habe noch eine Frage!</h4>
+	<p>Das ist zwar keine Frage, aber du kannst <a href="//yhaupenthal.org/contact.htm">mich gerne kontaktieren</a>.</p>
+	<p>Insbesondere freue ich mich über Fehlermeldungen und Verbesserungsvorschläge!</p>
+
+
+</div>

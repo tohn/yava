@@ -1,0 +1,29 @@
+<% if current_user %>
+<%= form_for(@j_product_inquiry) do |f| %>
+  <% if @j_product_inquiry.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@j_product_inquiry.errors.count, "error") %> prohibited this j_product_inquiry from being saved:</h2>
+
+      <ul>
+      <% @j_product_inquiry.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :inquiry_id %><br>
+    <%= f.number_field :inquiry_id %>
+  </div>
+  <div class="field">
+    <%= f.label :product_id %><br>
+    <%= f.number_field :product_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+<% else %>
+		<%= no_rights %>
+<% end %>

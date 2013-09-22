@@ -1,0 +1,33 @@
+<h1><%= t("subcategories_title.other") %></h1>
+
+<div class="center">
+	<%= will_paginate @subcategories %>
+</div>
+
+<table class="table table-striped table-condensed">
+	<thead>
+		<tr>
+						<th><%= t("activerecord.attributes.subcategory.name") %></th>
+						<th><%= t("activerecord.attributes.subcategory.category_id") %></th>
+					</tr>
+	</thead>
+
+	<tbody>
+		<% @subcategories.each do |subcategory| %>
+		<tr>
+						<td><%= link_to subcategory.name, subcategory_path(subcategory.id) %></td>
+						<td><%= subcategory.category.name %></td>
+					</tr>
+		<% end %>
+	</tbody>
+</table>
+
+<div class="center">
+	<%= will_paginate @subcategories %>
+</div>
+
+<hr>
+
+<p>
+	<%= link_to t("form.new", genus: t("form.f"), model: t("subcategories_title.one")), new_subcategory_path %>
+</p>

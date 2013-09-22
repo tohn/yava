@@ -1,0 +1,19 @@
+<% if current_user %>
+<%= simple_form_for(@veganity, :html => { :class => 'form-horizontal' }) do |f| %>
+	<%= render "layouts/submit_error", :errors => @veganity.errors %>
+
+	<div class="form-inputs">
+		<%= f.input :name %>
+		<%= f.input :description %>
+		<%= f.input :image %>
+		<%= f.input :color %>
+	</div>
+
+	<div class="form-actions">
+		<%= f.button :submit, :class => 'btn-primary' %>
+		<%= submit_tag t(:form_cancel), :type => :reset, :class => "btn btn-danger" %>
+	</div>
+<% end %>
+<% else %>
+	<%= no_rights %>
+<% end %>

@@ -1,0 +1,49 @@
+// Place all the styles related to the products controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.nutval_low {
+	background: lightgreen;
+}
+.nutval_medium {
+	background: orange;
+}
+.nutval_high {
+	background: red;
+}
+.nutval_neutral {
+	background: white;
+}
+
+.nutval_rating {
+	border: 1px solid black;
+	margin: 5px;
+	padding: 5px;
+	width: 130px;
+	text-align: center;
+	line-height: 15px;
+	font-weight: bold;
+	-webkit-border-radius: 75px;
+	-moz-border-radius: 75px;
+	border-radius: 75px;
+	display: inline-block;
+}
+
+/*
+.nutval {
+	border: 1px solid black;
+	padding: 10px;
+}
+*/
+
+/* center vertically + bigger font */
+/* http://css-tricks.com/centering-in-the-unknown/ */
+.table-products {
+	display: table;
+	width: 100%;
+	td {
+		display: table-cell;
+		font-size: 17px;
+		vertical-align: middle;
+	}
+}

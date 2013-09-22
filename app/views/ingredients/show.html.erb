@@ -1,0 +1,63 @@
+<% provide(:title, t(:ingredients_title, count: 1)+": "+UnicodeUtils.titlecase(@ingredient.name)) %>
+
+<h2><%= UnicodeUtils.titlecase(@ingredient.name) %></h2>
+<h3 class="center"><%= "hidden" if @ingredient.hide %></h3>
+
+<% if @ingredient.ingredient_synonym.any? %>
+  <p><b><%= t("activerecord.attributes.ingredient.ingredient_synonym") %>:</b>
+  <%= @ingredient.get_synonyms %>
+  </p>
+<% end %>
+
+<% if @ingredient.classname.any? %>
+  <p><strong><%= t("activerecord.attributes.ingredient.classname") %>:</strong>
+  <%= @ingredient.get_classnames %>
+  </p>
+<% end %>
+
+<p><%= image_tag @ingredient.image.url(:medium), class: "img-polaroid" %></p>
+
+<% if !@ingredient.description.blank? %>
+<p><%= content_tag("pre", @ingredient.description) %></p>
+<p><b><%= t("activerecord.attributes.ingredient.source") %></b>: <%= show_url @ingredient.source, @ingredient.source %></p>
+<% end %>
+
+<p><strong><%= t("activerecord.attributes.ingredient.veganity_id") %>:</strong></p>
+  <table class="table table-condensed table-striped">
+    <tr class="<%= @ingredient.veganity.color %>">
+      <td>
+	<%= @ingredient.veganity.name %>
+	<%= t(:veganity_fixed) if @ingredient.fixed %>
+      </td>
+    </tr>
+  </table>
+
+<hr>
+
+<% if !@ingredient.product.blank? %>
+<p><b><%= t("activerecord.attributes.ingredient.product") %>:</b></p>
+<table class="table table-condensed table-striped">
+<tr>
+  <th><%= t("activerecord.attributes.ingredient.product_id") %></th>
+  <th><%= t("activerecord.attributes.ingredient.veganity_id") %></th>
+</tr>
+<% @ingredient.product.map do |i| %>
+<tr class="<%= i.veganity.color %>">
+  <td><%= link_to i.name, product_path(i.id) %></td>
+  <td><%= i.veganity.name.capitalize %></td>
+</tr>
+<% end %>
+</table>
+<hr>
+<% end %>
+
+<% if !@ingredient.user_id.blank? %>
+	<%= t(:submitted_by) %>
+	<%= link_to @ingredient.user.nickname, user_path(@ingredient.user_id) %>
+	<%= t(:submitted_when) +" "+ time_ago_in_words(@ingredient.created_at) %>
+<% end %>
+<hr>
+<p>
+<%= link_to t(:link_edit, model: t("ingredients_title.one")), edit_ingredient_path(@ingredient) %> |
+<%= link_to t(:link_back, model: t("ingredients_title.other")), ingredients_path %>
+</p>

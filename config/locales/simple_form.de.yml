@@ -1,0 +1,55 @@
+de:
+  simple_form:
+    "yes": 'Ja'
+    "no": 'Nein'
+    required:
+      text: 'erforderlich'
+      mark: '*'
+      # You can uncomment the line below if you need to overwrite the whole required html.
+      # When using html, text and mark won't be used.
+      # html: '<abbr title="required">*</abbr>'
+    error_notification:
+      default_message: "Bitte überprüfen Sie die folgenden Felder:"
+    # Labels and hints examples
+    labels:
+    hints:
+      product:
+              #        gtin: "<div class='well'>blubb</div>"
+        gtin: "Barcode / Strichcode"
+        source: "Link zu schon existierender Produktanfrage oder zu der Seite des Herstellenden mit Angaben zur Veganität"
+        label: "Siegel können einfach hinzugefügt werden, das Produkt muss nicht aktualisiert werden"
+        feature: "Merkmale können einfach hinzugefügt werden, das Produkt muss nicht aktualisiert werden"
+      ingredient:
+        hide: "Soll die Zutat in Zutatenauflistungen angezeigt werden? (Standard: Ja)"
+        source: "Quelle der Beschreibung"
+        fixed: "Die Veganität kann damit nur noch hier von Administrator*innen geändert werden"
+    placeholders:
+      product:
+        gtin: "1234567891011"
+        name: "Produktname"
+        description: "Dies ist eine Beschreibung des Produktes."
+        ingredients: "Zutat 1, Zutat 2, Zutat 3, ..."
+        contains: "Nüsse, Soja"
+        traces: "Milch, Eier"
+        packagesize: "z.B. 500ml oder 500g"
+        source: "example.org"
+      user:
+        name: "Voller Name"
+        nickname: "nickname"
+        email: "change_me@example.org"
+      ingredient:
+        name: "Kurkuma"
+        source: "https://de.wikipedia.org/wiki/Kurkuma"
+        description: "Gewürz. Hergestellt aus der Kurkuma-Pflanze."
+    #   defaults:
+    #     password: 'Password'
+    #   user:
+    #     new:
+    #       email: 'E-mail to sign in.'
+    #     edit:
+    #       email: 'E-mail.'
+    # hints:
+    #   defaults:
+    #     username: 'User name to sign in.'
+    #     password: 'No special characters, please.'
+

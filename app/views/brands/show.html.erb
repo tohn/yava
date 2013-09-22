@@ -1,0 +1,15 @@
+<h2><%= @brand.name %></h2>
+
+<p>
+  <strong>Manufacturer:</strong>
+  <%= link_to @brand.manufacturer.name, manufacturer_path(@brand.manufacturer.id) %>
+</p>
+
+<p><b>Products:</b>
+<% Product.select(:id, :name).where("brand_id = ?", @brand.id).order(:name).map do |p| %>
+	<%= link_to p.name, product_path(p.id) %>
+<% end.join(", ") # TODO: join? %>
+</p>
+
+<%= link_to 'Edit', edit_brand_path(@brand) %> |
+<%= link_to 'Back', brands_path %>

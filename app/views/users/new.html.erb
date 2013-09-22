@@ -1,0 +1,8 @@
+<% provide(:title, t(:signin_title)) %>
+
+	<% if current_user %>
+		<p><%= t(:users_welcome) %> <%= link_to current_user.nickname, user_path(current_user.id) %>!<br>
+		<%= t(:nothing_to_see) %></p>
+	<% else %>
+		<%= render "form_new" %>
+	<% end %>

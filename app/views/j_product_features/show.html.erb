@@ -1,0 +1,17 @@
+<p>
+  <strong>Product:</strong>
+  <%= @j_product_feature.product_id %>
+</p>
+
+<p>
+  <strong>Feature:</strong>
+  <%= @j_product_feature.feature_id %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @j_product_feature.user_id %>
+</p>
+
+<%= link_to 'Edit', edit_j_product_feature_path(@j_product_feature) %> |
+<%= link_to 'Back', j_product_features_path %>

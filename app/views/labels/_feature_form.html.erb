@@ -1,0 +1,26 @@
+<% if current_user %>
+
+<div id="feature" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-focus-on="input:first">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel"><%= t("labels_title.other") %></h3>
+  </div>
+
+  <div class="modal-body">
+	<% @feature = Feature.new %>
+	<%= simple_form_for @feature, :html => { :class => 'form-horizontal' }, :remote => true do |f| %>
+	<div class="feature-errors"></div>
+		  <%= f.input :name %>
+
+	<div class="form-actions">
+		<%= f.button :submit, :class => 'btn-primary' %>
+		<%= submit_tag t(:form_cancel), :type => :reset, :class => "btn btn-danger", "data-dismiss" => "modal", "aria-hidden" => "true" %>
+	</div>
+<% end %>
+
+</div>
+</div>
+
+<% else %>
+	<%= no_rights %>
+<% end %>

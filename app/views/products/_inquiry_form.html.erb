@@ -1,0 +1,41 @@
+<% if current_user %>
+
+<div id="inquiry" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-focus-on="input:first">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel"><%= t("inquiries_title.one") %></h3>
+  </div>
+<div class="modal-body">
+	<% @inquiry = Inquiry.new %>
+	<%= simple_form_for @inquiry, :html => { :class => 'form-horizontal' }, :remote => true do |f| %>
+			<div class="inquiry-errors"></div>
+  
+		  <%= f.input :text, input_html: { rows: 10, class: "span4" }, hint: "<a role='button' class='btn' onclick='$(\"textarea#inquiry_text\").val(\"#{ escape_javascript(render "yava_mailer/pa", product: @product) }\");'>#{ t(:comment_auto) }</a>" %>
+		  <%= f.hidden_field :product_id, value: @product.id %>
+		  <%= f.hidden_field :user_id, value: current_user.id %>
+		  <div class="well">
+			<ul>
+				  <li><%= t(:product_inquiry_tipp) %><br>
+				  <% arr = [] ; @product.ingredient.map{ |i| arr << i.name if i.veganity_id > Veganity::NOT_VEGAN} %>
+				  <% if !arr.blank? %>
+				  	<%= t(:product_inquiry_potential) %><br>
+					<%= arr.map{ |i| UnicodeUtils.titlecase(i) }.join(", ") %></li>
+				  <% end %>
+				  <li><%= current_user.anonymize_name ? t(:users_anon_true2) : t(:users_anon_false2) %></li>
+				  <li><%= t(:product_inquiry_text) %> <a href="http://maqi.de/produktanfragen/"><%= t(:product_inquiry_text_a) %></a></li>
+				  <li><%= t(:product_inquiry_hint) %></li>
+			</ul>
+			<pre>
+				  <%= render(partial: "products/inquiry_hint", :formats => [:text]) %>
+			</pre>
+		  </div>
+
+	<div class="form-actions modal-footer">
+		<%= f.button :submit, :class => 'btn-primary' %>
+		<%= submit_tag t(:form_cancel), :type => :reset, :class => "btn btn-danger", "data-dismiss" => "modal", "aria-hidden" => "true" %>
+	</div>
+<% end %>
+</div>
+</div>
+
+<% end %>

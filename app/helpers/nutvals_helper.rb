@@ -1,0 +1,3 @@
+# NutvalsHelper
+module NutvalsHelper
+end

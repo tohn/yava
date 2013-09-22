@@ -1,0 +1,3 @@
+# CommentsHelper
+module CommentsHelper
+end

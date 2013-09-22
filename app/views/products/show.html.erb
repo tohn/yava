@@ -1,0 +1,218 @@
+<% provide(:title, t(:products_title, count: 1)+": "+@product.name) %>
+
+<h2>
+	<%= @product.name %>
+	<small><%= "("+@product.packagesize+")" unless @product.packagesize.blank? %></small>
+</h2>
+<h3 class="center"><%= get_brand(@product.brand) unless @product.brand.blank? %>
+  <% if !get_manufacturer(@product.brand).blank? %>
+	(<%= get_manufacturer(@product.brand) %>)
+  <% end %>
+</h3>
+
+<p>
+<b><%= t("activerecord.attributes.product.gtin") %>:</b>
+  <%= @product.gtin %>
+</p>
+
+<% if !@product.image.blank? %>
+<p><b><%= t("activerecord.attributes.product.image") %>:</b></p>
+  <%= image_tag @product.image.url(:medium), class: "img-polaroid" %>
+<% end %>
+
+<% if !@product.description.blank? %>
+	<p><b><%= t("activerecord.attributes.product.description") %>:</b></p>
+	<%= content_tag("pre", @product.description) %>
+<% end %>
+
+<div class="veganity">
+<p><b><%= t("activerecord.attributes.product.veganity_id") %>:</b></p>
+<table class="table table-condensed table-striped">
+  <% if !@product.veganity_ingredients.blank? and (@product.ingredient.count != 1 or @product.ingredient.first.fixed) %>
+    <tr class="<%= @product.veganity_ingredients.color %>">
+      <td>
+	<%= t(:veganity_ingredients) %>
+	<%= t(:veganity_fixed) if @product.ingredient.count == 1 and @product.ingredient.first.fixed %>
+      </td>
+      <td><%= @product.veganity_ingredients.name.capitalize %></td>
+    </tr>
+  <% end %>
+  <% if !@product.veganity_inquiries.blank? %>
+    <tr class="<%= @product.veganity_inquiries.color %>">
+      <td><%= t(:veganity_inquiries) %></td><td><%= @product.veganity_inquiries.name.capitalize %></td>
+    </tr>
+  <% end %>
+  <% if !@product.veganity_comments.blank? %>
+    <tr class="<%= @product.veganity_comments.color %>">
+      <td><%= t(:veganity_comments) %></td><td><%= @product.veganity_comments.name.capitalize %></td>
+  <% end %>
+  <% if !@product.source.blank? and !@product.veganity_source.blank? %>
+    <tr class="<%= @product.veganity_source.color %>">
+      <td><%= t(:veganity_source) %></td><td><%= @product.veganity_source.name.capitalize %></td>
+    </tr>
+  <% end %>
+  <tr class="<%= @product.veganity.color %>">
+    <td><b>Total</b></td><td><%= @product.veganity.name.capitalize unless @product.veganity.blank? %></td>
+  </tr>
+</table>
+</div>
+
+<% if !@product.ingredients.blank? %>
+		<p><b><%= t("activerecord.attributes.product.ingredients") %>:</b><p>
+	<%= content_tag("pre", @product.ingredients) %>
+<% end %>
+
+<p></p>
+
+<% if @product.ingredient.any? %>
+	<table class="table table-striped table-condensed">
+		<tr>
+			<th><%= t("activerecord.attributes.ingredient.name") %></th>
+			<th><%= t("activerecord.attributes.ingredient.description") %></th>
+			<th><%= t("activerecord.attributes.ingredient.veganity_id") %></th>
+		</tr>
+		<% @product.ingredient.order("name ASC").map do |i| %>
+			<% ing = Ingredient.where("not hide and lower(name) = ?", UnicodeUtils.downcase(i.name)).first %>
+			<% if !ing.blank? %>
+			<tr class="<%= ing.veganity.color %>">
+				<td><%= link_to truncate(ing.get_names), ingredient_path(ing.id) %></td>
+				<td><%= truncate(i.description) %></td>
+				<td>
+				  <%= ing.veganity.name %>
+				  <%= t(:veganity_fixed) if ing.fixed %>
+				</td>
+			</tr>
+			<% end %>
+		<% end %>
+	</table>
+<% end %>
+
+<% if !@product.category.blank? %>
+<p><b><%= t("activerecord.attributes.product.category_id") %>:</b>
+	<%= link_to @product.category.name, subcategory_path(@product.category_id) %>
+</p>
+<% end %>
+
+<% if !@product.nutval.blank? %>
+	<p><b><%= t(:nutval_and_traffic) %>:</b></p>
+	<%= render "nutval" %>
+	<p><%= t(:nutval_gda_desc) %></p>
+<% end %>
+
+<% if !@product.packagematerial.blank? %>
+<p><b><%= t("activerecord.attributes.product.packagematerial_id") %>:</b>
+	<%= link_to @product.packagematerial.name, packagematerial_path(@product.packagematerial_id) %>
+</p>
+<% end %>
+
+<% if !@product.country.blank? %>
+<p> <b><%= t("activerecord.attributes.product.country_id") %>:</b>
+	<%= @product.get_country_name %>
+</p>
+<% end %>
+
+
+<% if !@product.label.blank? %>
+<p><b><%= t("activerecord.attributes.product.label") %>:</b>
+<%= join_labels @product.label, :label %>
+</p>
+<% end %>
+
+<% if !@product.feature.blank? %>
+<p><b><%= t("activerecord.attributes.product.feature") %>:</b>
+<%= join_stuff @product.feature, :feature %>
+</p>
+<% end %>
+
+<p><b><%= t("activerecord.attributes.product.integrity") %>:</b></p>
+<div class="progress progress-success progress-striped active">
+	<div class="bar" style="width: <%= @product.integrity %>%;">
+		<p class="center" style="color: black"><%= @product.integrity %> %</p>
+	</div>
+</div>
+
+<hr>
+
+<% if !@product.source.blank? %>
+		<div class="alert alert-<%= @product.veganity_source.color unless @product.veganity_source.blank? %>">
+<b><%= t("activerecord.attributes.product.source") %>:</b>
+  <%= show_url @product.source, @product.source %>
+  </div>
+<% end %>
+
+<p><b><%= t("activerecord.attributes.product.inquiry") %>:</b></p>
+<div class="inquiries">
+	<% @product.inquiries.order("created_at ASC").map do |i| %>
+		<%= render "inquiry", :inquiry => i %>
+	<% end %>
+</div>
+
+<% if current_user %>
+	<% if @product.veganity_ingredients_id == Veganity::NOT_VEGAN or 
+(@product.brand_id.blank? or @product.brand.manufacturer.email.blank?) or 
+current_user.permission_id < User::PERMISSIONS_INQUIRY or 
+!current_user.email_verified %>
+		<div class="well">
+			<p><%= t(:product_inquiry_possible) %>:</p>
+			<ul>
+				<%= 
+"<li>#{t(:product_inquiry_possible_not_unvegan)}</li>".html_safe unless 
+@product.veganity_ingredients_id != Veganity::NOT_VEGAN %>
+				<% if !@product.brand_id.blank? %>
+					<%= "<li>#{t(:product_inquiry_possible_email)}</li>".html_safe unless !@product.brand.manufacturer.email.blank? %>
+				<% else %>
+					<%= "<li>#{t(:product_inquiry_possible_brand)}</li>".html_safe %>
+				<% end %>
+				<%= "<li>#{t(:product_inquiry_possible_points, points: User::POINTS_NECESSARY_INQUIRY)}</li>".html_safe unless current_user.permission_id >= User::PERMISSIONS_INQUIRY %>
+				<%= "<li>#{t(:product_inquiry_possible_verified)}</li>".html_safe unless current_user.email_verified %>
+		</ul>
+		</div>
+<% else %>
+	<a role='button' href='#inquiry' class='btn' data-toggle='modal'><%= t(:product_inquiry_new) %></a>
+<% end %>
+<% end %>
+<hr>
+
+<p><b><%= t("activerecord.attributes.product.comment") %>:</b></p>
+<div class="comments">
+	<% @product.comments.order("created_at ASC").map do |c| %>
+		<%= render "comment", :comment => c %>
+	<% end %>
+</div>
+<% if current_user %>
+  <% if current_user.permission_id < User::PERMISSIONS_COMMENT %>
+    <div class="well">
+      <p><%= t(:product_comment_possible) %>:</p>
+      <ul>
+	<%= "<li>#{t(:product_comment_possible_points, points: User::POINTS_NECESSARY_COMMENT)}</li>".html_safe unless current_user.permission_id >= User::PERMISSIONS_COMMENT %>
+	<li></li>
+      </ul>
+    </div>
+  <% else %>
+    <a role='button' href='#comment' class='btn' data-toggle='modal'><%= t(:product_comment_new) %></a>
+  <% end %>
+<% end %>
+<hr>
+
+<!-- Inquiry -->
+<%= render "products/inquiry_form" %>
+
+<!-- Comment -->
+<%= render "products/comment_form" %>
+
+<p>
+	<% @user = @product.user %>
+	<%= t(:submitted_by) %> <%= link_to @user.nickname, user_path(@user) %> <%= t(:submitted_when) %> <%= time_ago_in_words(@product.created_at) %><br>
+	<% if !@product.up_user_id.blank? %>
+		<% @upuser = @product.up_user %>
+		<%= t(:updated_by) %> <%= link_to @upuser.nickname, user_path(@upuser) %> <%= t(:submitted_when) %> <%= time_ago_in_words(@product.updated_at) %>
+	<% end %>
+</p>
+
+<hr>
+
+<p>
+<% if current_user %>
+	<%= link_to t(:link_edit, model: t(:products_title, count: 1)), edit_product_path(@product) %> |
+<% end %>
+<%= link_to t(:link_back, model: t(:products_title, count: 2)), products_path %></p>

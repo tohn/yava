@@ -1,0 +1,65 @@
+<% provide(:title, t(:stat_title)) %>
+
+<h1><%= t :stat_title %></h1>
+
+<p><b><%= link_to t("products_title.other"), products_path %>:</b> <%= Product.count %></p>
+
+<%= t(:stat_thereof) %>
+<table class="table table-condensed table-striped">
+  <thead>
+    <tr>
+      <th><%= t("veganities_title.one") %></th>
+      <th><%= t(:stat_count) %></th>
+    </tr>
+  </thead>
+  <tbody>
+  <% Veganity.all.map do |v| %>
+    <tr class="<%= v.color %>">
+      <td><b><%= v.name %></b></td>
+      <td><%= Product.where("veganity_id = ?", v.id).count %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<p><b><%= link_to t("ingredients_title.other"), ingredients_path %>:</b> <%= Ingredient.where("not hide").count %></p>
+
+<%= t(:stat_thereof) %>
+<table class="table table-condensed table-striped">
+  <thead>
+    <tr>
+      <th><%= t("veganities_title.one") %></th>
+      <th><%= t(:stat_count) %></th>
+      <th><%= t(:stat_count) + " " + t(:stat_fixed) %></th>
+    </tr>
+  </thead>
+  <tbody>
+  <% Veganity.all.map do |v| %>
+    <tr class="<%= v.color %>">
+      <td><b><%= v.name %></b></td>
+      <td><%= Ingredient.where("veganity_id = ? and not hide", v.id).count %></td>
+      <td><%= Ingredient.where("veganity_id = ? and not hide and fixed", v.id).count %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<p><b><%= link_to t("users_title.other"), users_path %>:</b> <%= User.where("permission_id != ?", User::PERMISSIONS_DEACTIVATED).count %></p>
+
+<%= t(:stat_thereof) %>
+<table class="table table-condensed table-striped">
+  <thead>
+    <tr>
+      <th><%= t("providers_title.one") %></th>
+      <th><%= t(:stat_count) %></th>
+    </tr>
+  </thead>
+  <tbody>
+  <% Provider.all.map do |p| %>
+    <tr>
+      <td><b><%= p.fullname %></b></td>
+      <td><%= User.where("provider_id = ? and permission_id != ?", p.id, User::PERMISSIONS_DEACTIVATED).count %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

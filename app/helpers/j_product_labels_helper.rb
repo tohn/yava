@@ -1,0 +1,3 @@
+# JProductLabelsHelper
+module JProductLabelsHelper
+end

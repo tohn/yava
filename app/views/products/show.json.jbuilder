@@ -1,0 +1,1 @@
+json.extract! @product, :gtin, :image, :name, :description, :category_id, :nutval_id, :packagematerial_id, :packagesize, :country_id, :brand_id, :veganity_id, :source, :integrity, :user_id, :created_at, :updated_at

@@ -1,0 +1,702 @@
+# http://stackoverflow.com/questions/3477522/preventing-html-character-entities-in-locale-files-from-getting-munged-by-rails3
+# http://stackoverflow.com/questions/2543936/rails-i18n-translating-text-with-links-inside
+# http://guides.rubyonrails.org/i18n.html
+# https://de.wikipedia.org/wiki/Utrum (commune)
+de:
+  yava: "YAVA"
+  index_title: "Dashboard"
+  index: "Willkommen zu YAVA!"
+  welcome: "Willkommen"
+  complete_products: "Vervollständige folgende Produkte, um Punkte zu erhalten:"
+  newest_products: "Die 5 neuesten Produkte:"
+  signin: "Anmelden"
+  signin_title: "Anmelden"
+  signout_title: "Abmelden"
+
+  yava_info_html: "Dies ist die Website für die %{href} \"YAVA: Yet Another Vegan App\""
+  yava_info_href_html: "Bachelorarbeit"
+
+  about_title: "Über"
+  contact_title: "Kontakt"
+  news_title: "News"
+  sitemap_title: "Sitemap"
+  tos_title: "Terms of Service"
+  pp_title: "Privacy Policy"
+  stat_title: "Statistiken"
+  stat_thereof: "davon ..."
+  stat_count: "Anzahl"
+  stat_fixed: "unveränderlich"
+
+  footer_by: "von"
+
+  search_title: "Suche"
+  search_desc: "Suche nach GTIN/EAN"
+  search_tooltip: "Gemeint ist damit ein Barcode bzw. Strichcode, der z.B. so aussehen kann:"
+  search_button: "Suche"
+  search_new: "Neue Suche"
+  search_no_result: "Es wurde kein Produkt gefunden."
+  search_new_product_1: "Möchtest du"
+  search_new_product_2: "ein neues Produkt anlegen"
+  search_many_results: "Es wurden folgende Produkte gefunden:"
+
+  nutval: "Nährwertangaben"
+  nutval_title: "Nährwertangaben"
+  nutval_info: "Durchschnittliche Nährwerte je 100g / 100ml"
+  nutval_info_solid: "Durchschnittliche Nährwerte je 100g"
+  nutval_info_liquid: "Durchschnittliche Nährwerte je 100ml"
+  nutval_energy: "Brennwert"
+  nutval_proteins: "Eiweiß"
+  nutval_carbohydrates: "Kohlenhydrate"
+  nutval_sugar: "dabei Zucker"
+  nutval_fat: "Fett"
+  nutval_saturated: "dabei gesättigte Fettsäuren"
+  nutval_monounsaturated: "dabei einfach ungesättigte Fettsäuren"
+  nutval_polyunsaturated: "dabei mehrfach ungesättigte Fettsäuren"
+  nutval_roughages: "Ballaststoffe"
+  nutval_natrium: "Natrium"
+  nutval_alcohol: "Alkohol"
+  nutval_rating_saturated: "gesättigte Fettsäuren"
+  nutval_rating_sugar: "Zucker"
+  nutval_rating_salt: "Salz"
+  traffic_light_rating_system: "Ampelkennzeichnung / Nährwert-Ampel"
+  nutval_rating_low: "Gering"
+  nutval_rating_medium: "Mittel"
+  nutval_rating_high: "Hoch"
+  nutval_no_rating: "Nicht verfügbar"
+  nutval_liquid: "Getränk (pro 100 ml)"
+  nutval_solid: "Lebensmittel (pro 100 g)"
+  nutval_add: "Nährwertangaben hinzufügen"
+  nutval_edit: "Nährwertangaben ändern"
+  nutval_and_traffic: "Nährwertangaben mit -ampel und GDA"
+  nutval_gda: "GDA*"
+  nutval_nutrient: "Nährstoff"
+  nutval_content: "Gehalt (Nährwertampel in Worten)"
+  nutval_amount: "Menge"
+  nutval_gda_desc: "* basierend auf einer Ernährung von 8373 kJ"
+  nutval_kj: "kJ"
+  nutval_kcal: "kcal"
+  nutval_ca: "ca."
+  nutval_vol: "% vol."
+  products_title:
+    one: "Produkt"
+    other: "Produkte"
+  product_comments: "Kommentare"
+  product_inquiries: "Produktanfragen"
+  product_inquiry_new: "Produktanfrage erstellen"
+  product_comment_new: "Kommentar erstellen"
+  product_comment_possible: "Nur möglich wenn"
+  product_comment_possible_points: ! "Du mindestens %{points} Punkte hast"
+  product_inquiry_tipp: "Sofern du eine Produktanfrage generierst, lese dir diese bitte genau durch und ändere/erweitere gegebenenfalls den Text."
+  product_inquiry_potential: "Potentiell vegane Zutaten könnten dabei sein:"
+  product_inquiry_text: "Der generierte Text wurde mithilfe des Baukastens von Maqi erstellt: "
+  product_inquiry_text_a: "Baukasten"
+  product_inquiry_hint: "Folgender Text wird an die E-Mail angehängt:"
+  product_inquiry_possible: "Nur möglich wenn"
+  product_inquiry_possible_not_unvegan: "Die Zutaten nicht unvegan sind"
+  product_inquiry_possible_email: "Eine E-Mailadresse für den*die Hersteller*in eingetragen ist"
+  product_inquiry_possible_brand: "Eine Marke eingetragen ist"
+  product_inquiry_possible_points: ! "Du mindestens %{points} Punkte hast"
+  product_inquiry_possible_verified: ! "Deine E-Mailadresse verifiziert wurde"
+
+  inquiries_title:
+    one: "Produktanfrage"
+    other: "Produktanfragen"
+  to_control: "Zu kontrollierende"
+  no_such_product_id: "Keine gültige Produkt-ID vorhanden!"
+
+  ingredients_title:
+    one: "Zutat"
+    other: "Zutaten"
+
+  manufacturers_title:
+    one: "Hersteller*in"
+    other: "Hersteller*innen"
+
+  no_url: ""
+
+  comment_edit: "Ändern"
+  comment_delete: "Löschen"
+  comment_new: "Erstellen"
+  comment_confirm: "Bist du sicher?"
+  comment_auto: "Generieren"
+  comments_title:
+    one: "Kommentar"
+    other: "Kommentare"
+
+  mailer_welcome_email: "Willkommen zu YAVA"
+  mailer_inquiry_email: "Produktanfrage zu"
+  mailer_inquiry_email_from: "Produktanfragen"
+  mailer_email_change: "E-Mailadresse wurde geändert"
+
+  veganity_title: "Veganität"
+  veganity_ingredients: "laut Zutaten"
+  veganity_inquiries: "laut Quelle/Produktanfragen"
+  veganity_comments: "laut Kommentaren"
+  veganity_source: "laut Quelle"
+  veganity_fixed: " (von den Admins festgelegt)"
+
+  users_title:
+    one: "Nutzer*in"
+    other: "Nutzer*innen"
+  users_index: "Nutzer*innen"
+  users_welcome: "Willkommen"
+  nothing_to_see: "Hier gibt es nichts zu sehen."
+  users_signin: "Melde dich mit einem der folgenden Anbieter*innen an."
+  users_loggedin_via: "Angemeldet über"
+  users_anon_true: "(wird in Produktanfragen mit \"XYZ\" ersetzt)"
+  users_anon_false: "(wird in Produktanfragen nicht anonymisiert)"
+  users_anon_true2: "Dein Name wird mit \"XYZ\" in der Produktansicht ersetzt"
+  users_anon_false2: "Dein Name wird in der Produktansicht nicht anonymisiert angezeigt"
+  users_email_true: "(wurde schon verifiziert)"
+  users_email_false: "(wurde noch nicht verifiziert)"
+  users_email_verified: "E-Mailadresse wurde verifiziert!"
+  users_email_not_verified: "E-Mailadresse konnte nicht verifiziert werden!"
+  users_deleted: "gelöscht"
+  users_destroy: "Account deaktivieren"
+  users_accept_tos: "Du stimmst damit automatisch den \"Terms of Service\" zu"
+  users_destroy_hint: "Damit kannst du deinen Account deaktivieren und alle deine persönlichen Angaben werden anonymisiert. Allerdings bleiben deine angelegten Einträge wie Produkte und Kommentare weiterhin bestehen. Sobald du dich wieder mit deiner*deinem Anbieter*in anmeldest, wird der Account wieder aktiviert."
+
+  form_error_desc: "das Speichern dieses Eintrages:"
+  form_error:
+    one: "Fehler verhinderte"
+    other: "Fehler verhinderten"
+  form_cancel: "Abbrechen"
+  form_add: "hinzufügen"
+  form_edit: "ändern"
+  form_new_f: "Neue"
+  form_new_m: "Neuer"
+  form_new_n: "Neues"
+  form_new_g: "Neue*r"
+  form_create: "erstellen"
+
+
+  submitted_by: "Eingetragen von"
+  submitted_when: "vor"
+  updated_by: "Zuletzt geändert von"
+
+  will_paginate:
+    previous_label: "Zurück"
+    next_label: "Weiter"
+    page_gap: "..."
+
+  session_failure: "Anmeldung scheiterte. Versuch es nochmal."
+
+  session_create_success: "Du bist nun angemeldet!"
+  session_create_failure: "Etwas ging schief, versuche es nochmal."
+  session_destroy: "Du bist nun abgemeldet!"
+
+  controller:
+    created: ! "%{model} wurde erfolgreich erstellt!"
+    notcreated: ! "%{model} wurde nicht erfolgreich erstellt!"
+    updated: ! "%{model} wurde erfolgreich aktualisiert!"
+    notfound: ! "%{model} wurde nicht gefunden!"
+    destroyed: ! "%{model} wurde erfolgreich deaktiviert!"
+
+  cities_title:
+    one: "Stadt"
+    other: "Städte"
+
+  edit: "Bearbeite"
+  show: "anzeigen"
+  back: "Alle anzeigen"
+
+  form:
+    edit: ! "%{model} bearbeiten"
+    new: ! "%{genus} %{model} erstellen" # better: create?
+    new2: ! "%{genus} %{model} hinzufügen"
+    f: "Neue"
+    m1: "Neuen"
+    m2: "Neuer"
+    n: "Neues"
+    c1: "Neue*n"
+    c2: "Neue*r"
+
+  settings: "Einstellungen"
+
+  link_edit: ! "%{model} bearbeiten"
+  link_back: ! "Alle %{model} anzeigen"
+  link_show: ! "%{model} anzeigen"
+
+  brands_title:
+    one: "Marke"
+    other: "Marken"
+
+  labels_title:
+    one: "Siegel"
+    other: "Siegel"
+
+  features_title:
+    one: "Merkmal"
+    other: "Merkmale"
+
+  classnames_title:
+    one: "Klassenname"
+    other: "Klassennamen"
+
+  categories_title:
+    one: "Kategorie"
+    other: "Kategorien"
+
+  subcategories_title:
+    one: "Unterkategorie"
+    other: "Unterkategorien"
+
+  packagematerials_title:
+    one: "Verpackungsmaterial"
+    other: "Verpackungsmaterialen"
+
+  j_product_comments_title:
+    one: "Produkt - Kommentar"
+    other: "Produkt - Kommentare"
+
+  j_product_features_title:
+    one: "Produkt - Merkmal"
+    other: "Produkt - Merkmale"
+
+  j_product_inquiries_title:
+    one: "Produkt - Produktanfrage"
+    other: "Produkt - Produktanfragen"
+
+  j_product_labels_title:
+    one: "Produkt - Siegel"
+    other: "Produkt - Siegel"
+    
+  j_ingredient_classnames_title:
+    one: "Klassenname"
+    other: "Klassennamen"
+
+  nutvals_title:
+    one: "Nährwertangabe"
+    other: "Nährwertangaben"
+
+  veganities_title:
+    one: "Veganität"
+    other: "Veganitäten"
+
+  no_edit: "Du kannst diesen Eintrag nicht mehr ändern"
+  no_rights: "Du hast nicht genügend Rechte um dies zu tun"
+  no_rights2: "Du hast nicht genügend Rechte um dies zu tun."
+  no_rights_please: "Bitte"
+  no_rights_signin: "melde dich an"
+  no_rights_continue: "um fortzufahren"
+  no_rights_signin_complete: "Bitte melde dich an um etwas zu ändern."
+
+  users_lastaction_wait: "Bitte warte noch "
+  users_lastaction_second:
+    one: " Sekunde"
+    other: " Sekunden"
+  
+  # This will be used as hint in an inquiry mail
+  inquiry_hint_text_1: "\r\n\r\nHinweis\r\n=======\r\n\r\nDies ist eine automatisch erstellte Mail von "
+  inquiry_hint_text_2: ".\r\n\r\nEs ist wichtig, dass Sie nicht den Betreff ändern, insbesondere\r\nnicht die Zahl, um eine automatische Einsortierung zu ermöglichen.\r\n\r\nBitte achten Sie darauf, dass Ihre Antwort veröffentlicht wird, Sie\r\ngeben mit einer Antwort damit also Ihr Einverständnis, wobei Ihre\r\nDaten anonymisiert werden können. Bitte teilen Sie dies mit."
+  
+  ingredient_synonyms_title:
+    one: "Zutatensynonym"
+    other: "Zutatensynonyme"
+  
+  providers_title:
+    one: "Anbieter*in"
+    other: "Anbieter*innen"
+  
+  date:
+    abbr_day_names:
+    - So
+    - Mo
+    - Di
+    - Mi
+    - Do
+    - Fr
+    - Sa
+    abbr_month_names:
+    - 
+    - Jan
+    - Feb
+    - Mär
+    - Apr
+    - Mai
+    - Jun
+    - Jul
+    - Aug
+    - Sep
+    - Okt
+    - Nov
+    - Dez
+    day_names:
+    - Sonntag
+    - Montag
+    - Dienstag
+    - Mittwoch
+    - Donnerstag
+    - Freitag
+    - Samstag
+    formats:
+      default: ! '%d.%m.%Y'
+      long: ! '%e. %B %Y'
+      short: ! '%e. %b'
+    month_names:
+    - 
+    - Januar
+    - Februar
+    - März
+    - April
+    - Mai
+    - Juni
+    - Juli
+    - August
+    - September
+    - Oktober
+    - November
+    - Dezember
+    order:
+    - :day
+    - :month
+    - :year
+  datetime:
+    distance_in_words:
+      about_x_hours:
+        one: etwa einer Stunde
+        other: etwa %{count} Stunden
+      about_x_months:
+        one: etwa einem Monat
+        other: etwa %{count} Monaten
+      about_x_years:
+        one: etwa einem Jahr
+        other: etwa %{count} Jahren
+      almost_x_years:
+        one: fast einem Jahr
+        other: fast %{count} Jahren
+      half_a_minute: einer halben Minute
+      less_than_x_minutes:
+        one: weniger als einer Minute
+        other: weniger als %{count} Minuten
+      less_than_x_seconds:
+        one: weniger als einer Sekunde
+        other: weniger als %{count} Sekunden
+      over_x_years:
+        one: mehr als einem Jahr
+        other: mehr als %{count} Jahren
+      x_days:
+        one: einem Tag
+        other: ! '%{count} Tagen'
+      x_minutes:
+        one: einer Minute
+        other: ! '%{count} Minuten'
+      x_months:
+        one: einem Monat
+        other: ! '%{count} Monate'
+      x_seconds:
+        one: einer Sekunde
+        other: ! '%{count} Sekunden'
+    prompts:
+      day: Tag
+      hour: Stunden
+      minute: Minuten
+      month: Monat
+      second: Sekunden
+      year: Jahr
+  errors: &errors
+    format: ! '%{attribute} %{message}'
+    messages:
+      accepted: muss akzeptiert werden
+      blank: muss ausgefüllt werden
+      confirmation: stimmt nicht mit der Bestätigung überein
+      empty: muss ausgefüllt werden
+      equal_to: muss genau %{count} sein
+      even: muss gerade sein
+      exclusion: ist nicht verfügbar
+      greater_than: muss größer als %{count} sein
+      greater_than_or_equal_to: muss größer oder gleich %{count} sein
+      inclusion: ist kein gültiger Wert
+      invalid: ist nicht gültig
+      less_than: muss kleiner als %{count} sein
+      less_than_or_equal_to: muss kleiner oder gleich %{count} sein
+      not_a_number: ist keine Zahl
+      not_an_integer: muss ganzzahlig sein
+      odd: muss ungerade sein
+      record_invalid: ! 'Gültigkeitsprüfung ist fehlgeschlagen: %{errors}'
+      taken: ist bereits vergeben
+      too_long: ist zu lang (nicht mehr als %{count} Zeichen)
+      too_short: ist zu kurz (nicht weniger als %{count} Zeichen)
+      wrong_length: hat die falsche Länge (muss genau %{count} Zeichen haben)
+    template:
+      body: ! 'Bitte überprüfen Sie die folgenden Felder:'
+      header:
+        one: ! 'Konnte %{model} nicht speichern: ein Fehler.'
+        other: ! 'Konnte %{model} nicht speichern: %{count} Fehler.'
+  helpers:
+    select:
+      prompt: Bitte wählen
+    submit:
+      create: ! '%{model} erstellen'
+      submit: ! '%{model} speichern'
+      update: ! '%{model} aktualisieren'
+  number:
+    currency:
+      format:
+        delimiter: .
+        format: ! '%n %u'
+        precision: 2
+        separator: ! ','
+        significant: false
+        strip_insignificant_zeros: false
+        unit: €
+    format:
+      delimiter: .
+      precision: 2
+      separator: ! ','
+      significant: false
+      strip_insignificant_zeros: false
+    human:
+      decimal_units:
+        format: ! '%n %u'
+        units:
+          billion:
+            one: Milliarde
+            other: Milliarden
+          million: Millionen
+          quadrillion:
+            one: Billiarde
+            other: Billiarden
+          thousand: Tausend
+          trillion: Billionen
+          unit: ''
+      format:
+        delimiter: ''
+        precision: 1
+        significant: true
+        strip_insignificant_zeros: true
+      storage_units:
+        format: ! '%n %u'
+        units:
+          byte:
+            one: Byte
+            other: Bytes
+          gb: GB
+          kb: KB
+          mb: MB
+          tb: TB
+    percentage:
+      format:
+        delimiter: ''
+    precision:
+      format:
+        delimiter: ''
+  support:
+    array:
+      last_word_connector: ! ' und '
+      two_words_connector: ! ' und '
+      words_connector: ! ', '
+  time:
+    am: vormittags
+    formats:
+      default: ! '%A, %d. %B %Y, %H:%M Uhr'
+      long: ! '%A, %d. %B %Y, %H:%M Uhr'
+      short: ! '%d. %B, %H:%M Uhr'
+    pm: nachmittags
+  # remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
+  activemodel:
+    errors:
+      <<: *errors
+  activerecord:
+    errors:
+      <<: *errors
+    models:
+      brand: "Marke"
+      category: "Kategorie"
+      city: "Stadt"
+      classname: "Klassenname"
+      comment: "Kommentar"
+      country: "Land"
+      feature: "Merkmal"
+      ingredient: "Zutat"
+      inquiry: "Produktanfrage"
+      label: "Siegel"
+      manufacturer: "Hersteller*in"
+      nutval: "Nährwertangaben"
+      packagematerial: "Verpackungsmaterial"
+      permission: "Befugnis"
+      point: "Punkt"
+      product: "Produkt"
+      provider: "Anbieter*in"
+      subcategory: "Unterkategorie"
+      tag: "Schlagwort"
+      user: "Nutzer*in"
+      veganity: "Veganität"
+    attributes:
+      brand:
+        name: "Name"
+        manufacturer_id: "Hersteller*in"
+        user_id: "Nutzer*in"
+      category:
+        name: "Name"
+        subcategory: "Unterkategorien"
+        user_id: "Nutzer*in"
+      city:
+        postcode: "Postleitzahl"
+        name: "Stadtname"
+        country_id: "Land"
+        user_id: "Nutzer*in"
+      classname:
+        sg: "Singular"
+        pl: "Plural"
+        abbr: "Abkürzung"
+      classname_synonyms:
+        sg: "Singular"
+        pl: "Plural"
+        classname_id: "Erstname??"
+      comment:
+        comment: "Kommentar"
+        user_id: "Nutzer*in"
+        veganity_id: "Veganität"
+        comment_id: "Kommentar"
+        product_id: "Produkt"
+      country:
+        name: "Name"
+      feature:
+        name: "Name"
+        description: "Beschreibung"
+        user_id: "Nutzer*in"
+      ingredient:
+        name: "Name"
+        image: "Bild"
+        source: "Quelle"
+        description: "Beschreibung"
+        veganity_id: "Veganität"
+        classname_id: "Klassenname"
+        classname: "Klassenname"
+        classnames: "Klassennamen"
+        user_id: "Nutzer*in"
+        hide: "Verstecken"
+        image_in_use: "Aktuelles Bild"
+        product: "Produkte"
+        product_id: "Produkt"
+        fixed: "Unveränderlich"
+        ingredient_synonym: "Synonyme"
+      ingredient_synonyms:
+        ingredient_id: "Zutat"
+        name: "Name"
+      inquiry:
+        text: "Text"
+        highlight: "Hervorheben"
+        veganity_id: "Veganität"
+        typ: "Art"
+        user_id: "Nutzer*in"
+        product_id: "Produkt"
+        seen: "Überprüft"
+        mto: "An"
+        mfrom: "Von"
+      j_ingredient_classname:
+        ingredient_id: "Zutat"
+        classname_id: "Klassenname"
+      j_product_feature:
+        feature_id: "Merkmal"
+        product_id: "Produkt"
+      j_product_label:
+        label_id: "Siegel"
+        product_id: "Produkt"
+      label:
+        name: "Name"
+        feature_id: "Merkmal"
+        feature: "Merkmal"
+        image: "Bild"
+        source: "Quelle"
+        user_id: "Nutzer*in"
+        description: "Beschreibung"
+        image_in_use: "Aktuelles Bild"
+      manufacturer:
+        name: "Name"
+        image: "Bild"
+        street: "Straße, Hausnummer"
+        city_id: "Stadt"
+        http: "Website"
+        email: "E-Mail"
+        tel: "Telefon"
+        fax: "Fax"
+        user_id: "Nutzer*in"
+        image_in_use: "Aktuelles Bild"
+      nutval:
+        energy: "Brennwert"
+        proteins: "Eiweiß"
+        carbohydrates: "Kohlenhydrate"
+        sugar: "dabei Zucker"
+        fat: "Fett"
+        saturated: "dabei gesättigte Fettsäuren"
+        monounsaturated: "dabei einfach ungesättigte Fettsäuren"
+        polyunsaturated: "dabei mehrfach ungesättigte Fettsäuren"
+        roughages: "Ballaststoffe"
+        natrium: "Natrium"
+        alcohol: "Alkohol"
+        user_id: "Nutzer*in"
+      packagematerial:
+        name: "Name"
+        description: "Beschreibung"
+        http: "Website"
+        user_id: "Nutzer*in"
+        image: "Bild"
+        abbr: "Abkürzung"
+        code: "Nummer"
+        image_in_use: "Aktuelles Bild"
+      permission:
+        name: "Name"
+        description: "Beschreibung"
+      point:
+        name: "Name"
+        points: "Punkte"
+      product:
+        #gtin: "<abbr title='Global Trade Item Number'>GTIN</abbr>"
+        gtin: "GTIN"
+        image: "Bild"
+        image_in_use: "Aktuelles Bild"
+        name: "Name"
+        brand: "Marke"
+        brand_id: "Marke"
+        veganity_id: "Veganität"
+        description: "Beschreibung"
+        ingredient: "Zutaten"
+        ingredients: "Zutaten"
+        category_id: "Kategorie"
+        nutval_id: "Nährwertangaben"
+        packagematerial_id: "Verpackungsmaterial"
+        packagesize: "Verpackungsgröße"
+        country_id: "Herkunftsland"
+        source: "Quelle"
+        label: "Siegel"
+        feature: "Merkmale"
+        integrity: "Vollständigkeit der Produktangaben (in %)"
+        user_id: "Nutzer*in"
+        up_user_id: "Nutzer*in (up)"
+        inquiry: "Produktanfragen"
+        comment: "Kommentare"
+        veganity_source_id: "Veganität der Quelle"
+        traces: "Kann Spuren enthalten von"
+        contains: "Enthält (Allergene)"
+      provider:
+        name: "Name"
+        description: "Beschreibung"
+        fullname: "Voller Name"
+        aktiv: "Aktiv"
+      subcategory:
+        name: "Name"
+        category_id: "Hauptkategorie"
+      tag:
+        name: "Name"
+        user_id: "Nutzer*in"
+      user:
+        provider_id: "Anbieter*in"
+        name: "Name"
+        nickname: "Spitzname"
+        email: "E-Mail"
+        lastlogin: "Letzte Anmeldung"
+        permission_id: "Befugnis"
+        points: "Punkte"
+        uid: "UID"
+        email_verified: "E-Mail verifiziert"
+        anonymize_name: "Name anonymisieren"
+        created_at: "Registriert"
+        image: "Bild"
+      veganity:
+        name: "Name"
+        description: "Beschreibung"
+        image: "Bild"
+        color: "Farbe"
+        image_in_use: "Aktuelles Bild"

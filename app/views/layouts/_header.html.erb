@@ -1,0 +1,38 @@
+<!--
+<header class="navbar navbar-fixed-top navbar-inverse">
+	<nav class="navbar-inner">
+		<div class="container">
+			<%#= render "layouts/navigation" %>
+		</div>
+	</nav>
+</header>
+<div class="navbar navbar-fixed-top navbar-inverse">
+-->
+
+<div class="navbar navbar-fixed-top navbar-inverse">
+  <div class="navbar-inner">
+	<div class="container">
+		<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		</a>
+
+
+		<a class="brand" href="<%= root_path %>"><b><%= t(:yava) %></b> BETA</a>
+		<%#= link_to t(:yava), root_path, :class => "brand" %>
+
+		<div class="nav-collapse collapse">
+
+				<%= render "layouts/navigation" %>
+<!--    <ul class="nav">
+      <li class="active"><a href="#">Home</a></li>
+	  <li class="divider-vertical"></li>
+	  <li><a href="#">Link</a></li>
+	  <li class="divider-vertical"></li>
+      <li><a href="#">Link</a></li>
+	</ul>-->
+		</div>
+	</div>
+  </div>
+</div>

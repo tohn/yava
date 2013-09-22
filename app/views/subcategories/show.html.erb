@@ -1,0 +1,17 @@
+<p>
+	<b><%= t("activerecord.attributes.subcategory.name") %>:</b>
+	<%= @subcategory.name %>
+</p>
+
+<p>
+	<b><%= t("activerecord.attributes.subcategory.category_id") %>:</b>
+	<%= @subcategory.category.name %>
+</p>
+
+
+<hr>
+
+<p>
+	<%= link_to t(:link_edit, model: t("subcategories_title.one")), edit_subcategory_path(@subcategory) %> |
+	<%= link_to t(:link_back, model: t("subcategories_title.other")), subcategories_path %>
+</p>

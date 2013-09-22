@@ -1,0 +1,25 @@
+<h1>Listing j_product_comments</h1>
+
+<table class="table table-striped table-condensed">
+  <thead>
+    <tr>
+      <th>Comment</th>
+      <th>Product</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @j_product_comments.each do |j_product_comment| %>
+      <tr>
+        <td><%= j_product_comment.comment_id %></td>
+        <td><%= j_product_comment.product_id %></td>
+        <td><%= link_to 'Show', j_product_comment %></td>
+        <td><%= link_to 'Edit', edit_j_product_comment_path(j_product_comment) %></td>
+        <td><%= link_to 'Destroy', j_product_comment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

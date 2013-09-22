@@ -1,0 +1,10 @@
+<h1><%= t("form.edit", model: t("categories_title.one")) %></h1>
+
+<%= render 'form' %>
+
+<hr>
+
+<p>
+	<%= link_to t(:link_show, model: t("categories_title.one")), @category %> |
+	<%= link_to t(:link_back, model: t("categories_title.other")), categories_path %>
+</p>

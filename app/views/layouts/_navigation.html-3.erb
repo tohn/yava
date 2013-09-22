@@ -1,0 +1,29 @@
+<%#= link_to t(:yava), root_path, id: "logo", :class => "brand" %>
+<% # http://stackoverflow.com/questions/9879169/how-to-get-twitter-bootstrap-navigation-to-show-active-link %>
+<ul class="nav pull-right">
+	<li class="<%= 'active' if current_page?(search_path) %>"><%= link_to t(:search_title), search_path %></li>
+<!--	<form class="navbar-search pull-left">
+			  <input type="text" class="search-query" placeholder="Search">
+	  </form>-->
+	<li class="<%= 'active' if current_page?(products_path) %>"><%= link_to t(:products_title, count: 2), products_path %></li>
+	<li class="<%= 'active' if current_page?(ingredients_path) %>"><%= link_to t(:ingredients_title, count: 2), ingredients_path %></li>
+	<li class="<%= 'active' if current_page?(manufacturers_path) %>"><%= link_to t(:manufacturers_title, count: 2), manufacturers_path %></li>
+	<% if current_user %>
+		<ul class="nav">
+			<li class="dropdown <%= 'active' if current_page?(user_path(current_user)) or current_page?(edit_user_path(current_user)) %>">
+				<a class="dropdown-toggle" id="dLabel" data-toggle="dropdown" data-target="#" href="<%= user_path(current_user) %>">
+					<%= current_user.nickname %> (<%= current_user.points %>)
+					<b class="caret"></b>
+				</a>
+	<% #<%= avatar_for(current_user) %>
+				<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+					<li><%= link_to current_user.nickname, user_path(current_user) %></li>
+					<li><%= link_to t(:settings), edit_user_path(current_user) %></li>
+					<li><%= link_to t(:signout_title), signout_path %></li>
+				</ul>
+			</li>
+		</ul>
+	<% else %>
+		<li class="<%= 'active' if current_page?(signin_path) %>"><%= link_to t(:signin_title), signin_path %></li>
+	<% end %>
+</ul>

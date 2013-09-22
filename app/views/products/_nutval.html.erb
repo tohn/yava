@@ -1,0 +1,118 @@
+<% if !@product.nutval.blank? %>
+
+<% if !@product.packagesize.blank? %>
+	<% if UnicodeUtils.downcase(@product.packagesize).include? "l" # drink/liquid %>
+<p><%= t(:nutval_info_liquid) %></p>
+		<% @n_fat = get_nutval_rating(@product.nutval.fat, 1.5, 10) %>
+		<% @n_saturated = get_nutval_rating(@product.nutval.saturated, 0.75, 2.5) %>
+		<% @n_sugar = get_nutval_rating(@product.nutval.sugar, 2.5, 6.3) %>
+		<% @n_natrium = get_nutval_rating(@product.nutval.natrium, 0.3, 1.5) %>
+	<% elsif UnicodeUtils.downcase(@product.packagesize).include? "g" # food/solid %>
+<p><%= t(:nutval_info_solid) %></p>
+		<% @n_fat = get_nutval_rating(@product.nutval.fat, 3, 20) %>
+		<% @n_saturated = get_nutval_rating(@product.nutval.saturated, 1.5, 5) %>
+		<% @n_sugar = get_nutval_rating(@product.nutval.sugar, 5, 12.5) %>
+		<% @n_natrium = get_nutval_rating(@product.nutval.natrium, 0.3, 1.5) %>
+	<% else %>
+<p><%= t(:nutval_info) %></p>
+	<% end %>
+<% end %>
+
+<table class="nutval table table-striped table-condensed">
+<tr>
+<th><%= t(:nutval_nutrient) %></th>
+<th><%= t(:nutval_gda) %></th>
+<th><%= t(:nutval_content) %></th>
+<th><%= t(:nutval_amount) %></th>
+</tr>
+		<% if !@product.nutval.energy.blank? %>
+        <tr>
+                <th><%= t(:nutval_energy) %></th>
+                <td><%= get_gda(@product.nutval.energy, 8373) %></td>
+		<td></td>
+		<td><%= @product.nutval.energy %> <%= t(:nutval_kj) %> / <%= t(:nutval_ca) %> <%= (clean_nutval(@product.nutval.energy) * 0.239).to_i %> <%= t(:nutval_kcal) %></td>
+        </tr>
+		<% end %>
+		<% if !@product.nutval.proteins.blank? %>
+        <tr>
+                <th><%= t(:nutval_proteins) %></th>
+                <td><%= get_gda(@product.nutval.proteins, 50) %></td>
+		<td></td>
+		<td><%= @product.nutval.proteins %> g</td>
+        </tr>
+		<% end %>
+		<% if !@product.nutval.carbohydrates.blank? %>
+        <tr>
+                <th><%= t(:nutval_carbohydrates) %></th>
+                <td><%= get_gda(@product.nutval.carbohydrates, 270) %></td>
+		<td></td>
+		<td><%= @product.nutval.carbohydrates %> g</td>
+        </tr>
+		<% end %>
+		<% if !@product.nutval.sugar.blank? %>
+		<tr class="<%= @n_sugar[0] %>">
+				<td><b><%= t(:nutval_sugar) %></b></td>
+				<td><%= get_gda(@product.nutval.sugar, 90) %></td>
+				<td><%= @n_sugar[1] %></td>
+				<td><%= @product.nutval.sugar %> g</td>
+        </tr>
+		<% end %>
+		<% if !@product.nutval.fat.blank? %>
+		<tr class="<%= @n_fat[0] %>">
+				<td><b><%= t(:nutval_fat) %></b></td>
+				<td><%= get_gda(@product.nutval.fat, 70) %></td>
+				<td><%= @n_fat[1] %></td>
+				<td><%= @product.nutval.fat %> g</td>
+        </tr>
+		<% end %>
+		<% if !@product.nutval.saturated.blank? %>
+		<tr class="<%= @n_saturated[0] %>">
+				<td><b><%= t(:nutval_saturated) %></b></td>
+				<td><%= get_gda(@product.nutval.saturated, 20) %></td>
+				<td><%= @n_saturated[1] %></td>
+				<td><%= @product.nutval.saturated %> g</td>
+        </tr>
+		<% end %>
+		<% if !@product.nutval.monounsaturated.blank? %>
+        <tr>
+                <th><%= t(:nutval_monounsaturated) %></th>
+                <td><%= get_gda(@product.nutval.monounsaturated, 34) %></td>
+		<td></td>
+		<td><%= @product.nutval.monounsaturated %> g</td>
+        </tr>
+		<% end %>
+		<% if !@product.nutval.polyunsaturated.blank? %>
+        <tr>
+                <th><%= t(:nutval_polyunsaturated) %></th>
+                <td><%= get_gda(@product.nutval.polyunsaturated, 16) %></td>
+		<td></td>
+		<td><%= @product.nutval.polyunsaturated %> g</td>
+        </tr>
+		<% end %>
+		<% if !@product.nutval.roughages.blank? %>
+        <tr>
+                <th><%= t(:nutval_roughages) %></th>
+                <td><%= get_gda(@product.nutval.roughages, 25) %></td>
+		<td></td>
+		<td><%= @product.nutval.roughages %> g</td>
+        </tr>
+		<% end %>
+		<% if !@product.nutval.natrium.blank? %>
+		<tr class="<%= @n_natrium[0] %>">
+			<td><b><%= t(:nutval_natrium) %></b></td>
+			<td><%= get_gda(@product.nutval.natrium, 2.4) %></td>
+			<td><%= @n_natrium[1] %></td>
+			<td><%= @product.nutval.natrium %> g</td>
+        </tr>
+		<% end %>
+		<% if !@product.nutval.alcohol.blank? %>
+        <tr>
+                <th><%= t(:nutval_alcohol) %></th>
+                <td></td>
+		<td></td>
+		<td><%= @product.nutval.alcohol %> <%= t(:nutval_vol) %></td>
+        </tr>
+		<% end %>
+</table>
+
+<% end %>

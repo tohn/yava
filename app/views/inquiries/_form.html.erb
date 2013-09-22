@@ -1,0 +1,23 @@
+<% if current_user %>
+		<% if !@inquiry.seen and current_user.permission_id >= User::PERMISSIONS_INQUIRY %>
+		<%= simple_form_for @inquiry, :html => { :class => 'form-horizontal' } do |f| %>
+		<%= render "layouts/submit_error", :errors => @inquiry.errors %>
+
+		<%= f.input :text, :input_html => { :class => "span8", :rows => 10 } %>
+	<%= f.input :highlight, :as => :boolean %>
+    <%= f.input :veganity_id, collection: Veganity.all, include_blank: false %>
+	<%= f.hidden_field :user_id, :value => @inquiry.user_id %>
+	<%= f.hidden_field :product_id, :value => @inquiry.product_id %>
+	<%= f.hidden_field :seen, :value => true %>
+	<%= f.hidden_field :typ, :value => true %>
+	<div class="form-actions">
+		<%= f.button :submit, class: "btn-primary" %>
+		<%= submit_tag t(:form_cancel), :type => :reset, :class => "btn btn-danger" %>
+	</div>
+		<% end %>
+	<% else %>
+		<%= no_edit %>
+	<% end %>
+<% else %>
+	<%= no_rights %>
+<% end %>

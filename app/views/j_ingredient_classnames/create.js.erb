@@ -1,0 +1,10 @@
+<% if @j_ingredient_classname.errors.any? %>
+  $(".j_ingredient_classname-errors").empty();
+  $('.j_ingredient_classname-errors').append('<div class="alert alert-error"><ul class="error-messages"></ul></div>');
+  <% @j_ingredient_classname.errors.full_messages.each do |msg| %>
+    $('.j_ingredient_classname-errors .error-messages').append('<%= escape_javascript msg %><br>');
+  <% end %>
+<% else %>
+  $("<%= escape_javascript(render @j_ingredient_classname) %>").appendTo("div.ingredient_classnames");
+  $(".j_ingredient_classname-errors").empty();
+<% end %>

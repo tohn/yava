@@ -1,0 +1,3 @@
+# CategoriesHelper
+module CategoriesHelper
+end

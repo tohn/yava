@@ -1,0 +1,42 @@
+<% provide(:title, t(:manufacturers_title, count: 1)+": "+@manufacturer.name) %>
+
+<h2> <%= @manufacturer.name %> </h2>
+
+<div class="row">
+	<div class="span6 center">
+		<%= image_tag @manufacturer.image.url(:medium), class: "img-polaroid" %>
+	</div>
+
+	<div class="span6 left">
+<address>
+	<% if !@manufacturer.http.blank? %>
+		<b><%= show_url @manufacturer.name, @manufacturer.http %></b><br>
+	<% end %>
+	<%= @manufacturer.address unless @manufacturer.address.blank? %><br>
+	<% if !@manufacturer.tel.blank? %>
+		<%= t("activerecord.attributes.manufacturer.tel") %>: <%= @manufacturer.tel %><br>
+	<% end %>
+	<% if !@manufacturer.fax.blank? %>
+			<%= t("activerecord.attributes.manufacturer.fax") %>: <%= @manufacturer.fax %><br>
+	<% end %>
+	<%= mail_to @manufacturer.email unless @manufacturer.email.blank? %>
+</address>
+</div>
+</div>
+
+<div class="brands">
+<% if !@manufacturer.brands.blank? %>
+	<p><b><%= t(:brands_title, count: 2) %>:</b></p>
+<ul id="brands">
+<% @manufacturer.brands.map do |b| %>
+	<li><%= link_to b.name, brand_path(b.id) %></li>
+<% end %>
+</ul>
+<% end %>
+</div>
+
+<hr>
+<p>
+<%= link_to t(:link_edit, model: t(:manufacturers_title, count: 1)), edit_manufacturer_path(@manufacturer) %> |
+<%= link_to t(:link_back, model: t(:manufacturers_title, count: 2)), manufacturers_path %>
+</p>

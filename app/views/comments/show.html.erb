@@ -1,0 +1,9 @@
+<%= render "products/comment", :comment => @comment %>
+
+<p>
+  <strong>Product:</strong>
+  <%= link_to @comment.product.name, product_path(@comment.product_id) %>
+</p>
+
+<%#= link_to 'Edit', edit_comment_path(@comment) %> |
+<%= link_to 'Back', comments_path %>

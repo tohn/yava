@@ -1,0 +1,11 @@
+<% if @j_product_label.errors.any? %>
+  $(".j_product_label-errors").empty();
+  $('.j_product_label-errors').append('<div class="alert alert-error"><ul class="error-messages"></ul></div>');
+  <% @j_product_label.errors.full_messages.each do |msg| %>
+    $('.j_product_label-errors .error-messages').append('<%= escape_javascript msg %><br>');
+  <% end %>
+<% else %>
+  $("<%= escape_javascript(render @j_product_label) %>").appendTo("div.labels");
+  $("select#j_product_label_label_id").val("selected");
+  $(".j_product_label-errors").empty();
+<% end %>

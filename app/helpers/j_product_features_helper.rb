@@ -1,0 +1,3 @@
+# JProductFeaturesHelper
+module JProductFeaturesHelper
+end

@@ -1,0 +1,12 @@
+<p>
+  <strong>Comment:</strong>
+  <%= @j_product_comment.comment_id %>
+</p>
+
+<p>
+  <strong>Product:</strong>
+  <%= @j_product_comment.product_id %>
+</p>
+
+<%= link_to 'Edit', edit_j_product_comment_path(@j_product_comment) %> |
+<%= link_to 'Back', j_product_comments_path %>

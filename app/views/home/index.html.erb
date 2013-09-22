@@ -1,0 +1,40 @@
+<% provide(:title, t(:index_title)) %>
+
+<div class="center hero-unit">
+	<h1><%= t :index %></h1>
+
+	<h4><%= t(:yava_info_html, :href => link_to(t(:yava_info_href_html), "http://yhaupenthal.org/bachelor.htm")) %></h4>
+
+	<hr>
+
+	<div class="row">
+	<% if current_user %>
+			<p><%= t :welcome %> <%= link_to current_user.nickname, user_path(current_user.id) %>!</p>
+			<hr>
+	<div class="span5">
+		<% if Product.any? %>
+			<p><%= t :complete_products %></p><p>
+			<% Product.limit(5).select(:id, :name).where("integrity < 100").order(:integrity).map do |p| %>
+				<%= link_to p.name, product_path(p.id) %><br>
+		<% end %></p>
+		<% end %>
+	</div>
+	<% else %>
+		<p><%= link_to t(:signin), signin_path, class: "btn btn-large btn-primary" %></p>
+		<hr>
+	<% end %>
+
+	<div class="span5">
+		<% if Product.any? %>
+			<p><%= t :newest_products %></p><p>
+			<% Product.limit(5).select(:id, :name).order(:created_at).reverse_order.map do |p| %>
+				<%= link_to p.name, product_path(p.id) %><br>
+			<% end %></p>
+		<% end %>
+		<p>
+		  <%= link_to t("form.new", genus: t("form.n"), model: t("products_title.one")), new_product_path, { :class => "btn" } %>
+		</p>
+	</div>
+	</div>
+
+</div>

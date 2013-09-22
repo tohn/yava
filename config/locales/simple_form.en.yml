@@ -1,0 +1,55 @@
+en:
+  simple_form:
+    "yes": 'Yes'
+    "no": 'No'
+    required:
+      text: 'required'
+      mark: '*'
+      # You can uncomment the line below if you need to overwrite the whole required html.
+      # When using html, text and mark won't be used.
+      # html: '<abbr title="required">*</abbr>'
+    error_notification:
+      default_message: "Please check the following input fields:"
+    # Labels and hints examples
+    labels:
+    hints:
+      product:
+              #        gtin: "<div class='well'>blubb</div>"
+        gtin: "Barcode"
+        source: "Link to an already existing inquiry or to the manufacturer's webpage with data about the veganity"
+        label: "You can simply add labels, you don't have to update the product"
+        feature: "You can simply add features, you don't have to update the product"
+      ingredient:
+        hide: "Show this ingredient in ingredient lists? (Default: Yes)"
+        source: "Source of the description"
+        fixed: "The veganity can only be updated here by the administrators"
+    placeholders:
+      product:
+        gtin: "1234567891011"
+        name: "Product name"
+        description: "That's a description of this product."
+        ingredients: "Ingredient 1, Ingredient 2, Ingredient 3, ..."
+        contains: "Nuts, Soy"
+        traces: "Milk, Eggs"
+        packagesize: "500ml or 500g"
+        source: "example.org"
+      user:
+        name: "Full name"
+        nickname: "nickname"
+        email: "change_me@example.org"
+      ingredient:
+        name: "Turmeric"
+        source: "https://en.wikipedia.org/wiki/Turmeric"
+        description: "Spice. Derived from the Turmeric plant."
+    #   defaults:
+    #     password: 'Password'
+    #   user:
+    #     new:
+    #       email: 'E-mail to sign in.'
+    #     edit:
+    #       email: 'E-mail.'
+    # hints:
+    #   defaults:
+    #     username: 'User name to sign in.'
+    #     password: 'No special characters, please.'
+

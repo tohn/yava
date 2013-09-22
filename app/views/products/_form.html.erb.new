@@ -1,0 +1,16 @@
+<% if current_user %>
+
+	<%= simple_form_for @product, :html => { :class => 'form-horizontal' } do |f| %>
+
+	<%= render "layouts/submit_error", :errors => @product.errors %>
+
+<%= f.input :gtin %>
+<%#= f.input :name %>
+<%= f.input :name, :wrapper => :append, :label => false do %>
+	<%= f.input_field :name %>
+	<%= content_tag :span, "kJ", :class => "add-on" %>
+<% end %>
+<%= f.button :submit %>
+
+<% end %>
+<% end %>

@@ -1,0 +1,25 @@
+<% if current_user %>
+	<%= simple_form_for(@packagematerial, :html => { :class => 'form-horizontal' }) do |f| %>
+	<%= render "layouts/submit_error", :errors => @packagematerial.errors %>
+
+	<div class="form-inputs">
+		<%= f.input :name %>
+		<%= f.input :code %>
+		<%= f.input :abbr %>
+		<%= f.input :image_in_use do %>
+				<%= image_tag @packagematerial.image.url(:thumb), class: "img-polaroid" %>
+		<% end unless @packagematerial.image.blank? %>
+		<%= f.input :image %>
+		<%= f.input :description %>
+		<%= f.input :http %>
+		<%= f.hidden_field :user_id, value: current_user.id %>
+	</div>
+
+	<div class="form-actions">
+		<%= f.button :submit, :class => 'btn-primary' %>
+		<%= submit_tag t(:form_cancel), :type => :reset, :class => "btn btn-danger" %>
+	</div>
+<% end %>
+<% else %>
+	<%= no_rights %>
+<% end %>

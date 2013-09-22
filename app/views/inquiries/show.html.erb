@@ -1,0 +1,9 @@
+<h3 class="center"><%= link_to @inquiry.product.name, product_path(@inquiry.product_id) %></h3>
+
+<%= render "products/inquiry", :inquiry => @inquiry %>
+
+<hr>
+<p>
+<%= link_to t(:link_edit, model: t("inquiries_title.one")), edit_inquiry_path(@inquiry) %> |
+<%= link_to t(:link_back, model: t("inquiries_title.other")), inquiries_path %>
+</p>

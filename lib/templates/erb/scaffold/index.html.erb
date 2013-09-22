@@ -1,0 +1,35 @@
+<h1><%%= t("<%= plural_table_name %>_title.other") %></h1>
+
+<div class="center">
+	<%%= will_paginate @<%= plural_table_name %> %>
+</div>
+
+<table class="table table-striped table-condensed">
+	<thead>
+		<tr>
+			<% attributes.reject(&:password_digest?).each do |attribute| -%>
+			<th><%%= t("activerecord.attributes.<%= singular_table_name %>.<%= attribute.name %>") %></th>
+			<% end -%>
+		</tr>
+	</thead>
+
+	<tbody>
+		<%% @<%= plural_table_name %>.each do |<%= singular_table_name %>| %>
+		<tr>
+			<% attributes.reject(&:password_digest?).each do |attribute| -%>
+			<td><%%= <%= singular_table_name %>.<%= attribute.name %> %></td>
+			<% end -%>
+		</tr>
+		<%% end %>
+	</tbody>
+</table>
+
+<div class="center">
+	<%%= will_paginate @<%= plural_table_name %> %>
+</div>
+
+<hr>
+
+<p>
+	<%%= link_to t("form.new", genus: t("form.f"), model: t("<%= plural_table_name %>_title.one")), new_<%= singular_table_name %>_path %>
+</p>

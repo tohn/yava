@@ -1,0 +1,4 @@
+<p>
+	<%= j_ingredient_classname.classname.get_sg %>
+	<%= link_to "<i class='icon-minus'></i>".html_safe, j_ingredient_classname_path(j_ingredient_classname.id), :remote => true, :method => :delete, :onclick => "$(this).parents('p').remove();" %>
+</p>

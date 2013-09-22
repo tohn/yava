@@ -1,0 +1,11 @@
+<% if @manufacturer.errors.any? %>
+  $(".manufacturer-errors").empty();
+  $('.manufacturer-errors').append('<div class="alert alert-error"><ul class="error-messages"></ul></div>');
+  <% @manufacturer.errors.full_messages.each do |msg| %>
+    $('.manufacturer-errors .error-messages').append('<%= escape_javascript msg %><br>');
+  <% end %>
+<% else %>
+  $("<%= escape_javascript(render @manufacturer) %>").appendTo("select#brand_manufacturer_id");
+  $(".manufacturer-errors").empty();
+  $("div#manufacturer").hide();
+<% end %>

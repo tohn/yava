@@ -1,0 +1,24 @@
+<% if current_user %>
+	<%= simple_form_for(@label,  :html => { :class => 'form-horizontal' }) do |f| %>
+	<%= render "layouts/submit_error", :errors => @label.errors %>
+
+  <div class="form-inputs">
+    <%= f.input :name %>
+    <%= f.input :image %>
+    <%= f.input :source %>
+    <%= f.input :description %>
+    <%= f.input :feature, collection: Feature.order("lower(name) asc"), hint: "<a href='#feature' role='button' class='btn' data-toggle='modal'>#{t("form.new", genus: t("form.n"), model: t(:features_title, count: 1))}</a>" %>
+  </div>
+  <div class="form-actions">
+		  <%= f.hidden_field :user_id, value: current_user.id %>
+		  <%= f.button :submit, :class => 'btn-primary' %>
+		  <%= submit_tag t(:form_cancel), :type => :reset, :class => "btn btn-danger" %>
+  </div>
+<% end %>
+
+<!-- Feature -->
+<%= render "labels/feature_form" %>
+
+<% else %>
+	<%= no_rights %>
+<% end %>

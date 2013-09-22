@@ -1,0 +1,6 @@
+<%= form_tag({:controller => "home", :action => "search"}, :method => "post") do %>
+  <div class="input-append">
+    <%= text_field_tag :search, params[:search], :autofocus => "", :autocomplete => "on", :required => "required", :class => "span3", min: 3 %>
+    <button type="submit" class="btn"><%= t(:search_button) %></button>
+  </div>
+<% end %>

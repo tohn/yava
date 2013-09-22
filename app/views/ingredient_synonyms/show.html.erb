@@ -1,0 +1,48 @@
+<h2><%= @ingredient.name %></h2>
+
+<p><%= image_tag @ingredient.image.url(:medium), class: "img-polaroid" %></p>
+
+<% if !@ingredient.description.blank? %>
+<p><%= content_tag("pre", @ingredient.description) %></p>
+<p><b><%= t("activerecord.attributes.ingredient.source") %></b>: <%= show_url @ingredient.source, @ingredient.source %></p>
+<% end %>
+
+<p><strong><%= t("activerecord.attributes.ingredient.veganity_id") %>:</strong>
+  <%= @ingredient.veganity.name %>
+</p>
+
+<% if !@ingredient.classname.blank? %>
+<p><strong><%= t("activerecord.attributes.ingredient.classname_id") %>:</strong>
+  <%= @ingredient.classname.get_sg %>
+</p>
+<% end %>
+
+<hr>
+
+<% if !@ingredient.product.blank? %>
+<p><b><%= t("activerecord.attributes.ingredient.product") %>:</b></p>
+<table class="table table-condensed table-striped">
+<tr>
+  <th><%= t("activerecord.attributes.ingredient.product_id") %></th>
+  <th><%= t("activerecord.attributes.ingredient.veganity_id") %></th>
+</tr>
+<% @ingredient.product.map do |i| %>
+<tr class="<%= i.veganity.color %>">
+  <td><%= link_to i.name, product_path(i.id) %></td>
+  <td><%= i.veganity.name.capitalize %></td>
+</tr>
+<% end %>
+</table>
+<hr>
+<% end %>
+
+<% if !@ingredient.user_id.blank? %>
+	<%= t(:submitted_by) %>
+	<%= link_to @ingredient.user.nickname, user_path(@ingredient.user_id) %>
+	<%= t(:submitted_when) +" "+ time_ago_in_words(@ingredient.created_at) %>
+<% end %>
+<hr>
+<p>
+<%= link_to t(:link_edit, model: t("ingredients_title.one")), edit_ingredient_path(@ingredient) %> |
+<%= link_to t(:link_back, model: t("ingredients_title.other")), ingredients_path %>
+</p>

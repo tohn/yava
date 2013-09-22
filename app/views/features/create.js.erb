@@ -1,0 +1,14 @@
+<% if @feature.errors.any? %>
+  $(".feature-errors").empty();
+  $('.feature-errors').append('<div class="alert alert-error"><ul class="error-messages"></ul></div>');
+  <% @feature.errors.full_messages.each do |msg| %>
+    $('.feature-errors .error-messages').append('<%= escape_javascript msg %><br>');
+  <% end %>
+<% else %>
+  // necessary?
+  $("<%= escape_javascript(render @feature) %>").appendTo("table.label select");
+  // products -> features
+  $("<%= escape_javascript(render @feature) %>").appendTo("tr.feature_col select");
+  $("button.close").click();
+  $(".feature-errors").empty();
+<% end %>

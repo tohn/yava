@@ -1,0 +1,17 @@
+<% if current_user %>
+	<%= simple_form_for(@classname, :html => { :class => 'form-horizontal' }) do |f| %>
+	<%= render "layouts/submit_error", :errors => @classname.errors %>
+
+	<div class="form-inputs">
+		<%= f.input :sg %>
+		<%= f.input :pl %>
+	</div>
+
+	<div class="form-actions">
+		<%= f.button :submit, :class => 'btn-primary' %>
+		<%= submit_tag t(:form_cancel), :type => :reset, :class => "btn btn-danger" %>
+	</div>
+<% end %>
+<% else %>
+	<%= no_rights %>
+<% end %>

@@ -1,0 +1,4 @@
+<p>
+	<%= ingredient_synonym.name %>
+	<%= link_to "<i class='icon-minus'></i>".html_safe, ingredient_synonym_path(ingredient_synonym.id), :remote => true, :method => :delete, :onclick => "$(this).parents('p').remove();" %>
+</p>

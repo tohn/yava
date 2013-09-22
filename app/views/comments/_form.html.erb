@@ -1,0 +1,19 @@
+<% if current_user %>
+	<%= simple_form_for(@comment, :html => { :class => 'form-horizontal' }) do |f| %>
+	<%= render "layouts/submit_error", :errors => @comment.errors %>
+
+  <div class="form-inputs">
+    <%= f.input :comment %>
+    <%= f.input :veganity_id, collection: Veganity.where("id != ?", Veganity::UNKNOWN).all, include_blank: false %>
+  </div>
+  <div class="actions">
+	<%= f.hidden_field :user_id, :value => current_user.id %>
+	<%= f.hidden_field :product_id, :value => @comment.product_id %>
+	<%= f.button :submit, :class => 'btn-primary' %>
+	<%= submit_tag t(:form_cancel), :type => :reset, :class => "btn btn-danger" %>
+  </div>
+<% end %>
+
+<% else %>
+	<%= no_rights %>
+<% end %>

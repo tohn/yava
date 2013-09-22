@@ -1,0 +1,4 @@
+<p>
+	<%= j_product_feature.feature.name %>
+	<%= link_to "<i class='icon-minus'></i>".html_safe, j_product_feature_path(j_product_feature.id), :remote => true, :method => :delete, :onclick => "$(this).parents('p').remove();" %>
+</p>
